@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generation 0</title>
+  <title>Generation 1</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #0a0a0a;
-      color: #c8c8c8;
-      font-family: monospace;
+      background: #0d0221;
+      color: #e0c3fc;
+      font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -20,17 +20,18 @@
     }
 
     .pulse {
-      width: 12px;
-      height: 12px;
-      background: #ff6b35;
+      width: 14px;
+      height: 14px;
+      background: #00f0ff;
       border-radius: 50%;
-      animation: pulse 3s ease-in-out infinite;
+      animation: pulse 2s ease-in-out infinite;
       margin-bottom: 48px;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.8); }
+      0%, 100% { opacity: 0.4; transform: scale(1); box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
+      50% { opacity: 1; transform: scale(2); box-shadow: 0 0 40px rgba(0, 240, 255, 0.8); }
     }
 
     h1 {
@@ -39,20 +40,22 @@
       letter-spacing: 8px;
       text-transform: uppercase;
       margin-bottom: 16px;
+      color: #b48eff;
     }
 
     .gen {
       font-size: 72px;
       font-weight: bold;
-      color: #ff6b35;
+      color: #00f0ff;
       line-height: 1;
       margin-bottom: 32px;
+      text-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
     }
 
     .message {
       font-size: 13px;
-      opacity: 0.5;
-      max-width: 400px;
+      opacity: 0.6;
+      max-width: 420px;
       text-align: center;
       line-height: 1.8;
       margin-bottom: 48px;
@@ -64,7 +67,7 @@
       left: 24px;
       font-size: 11px;
       opacity: 0.25;
-      line-height: 1.6;
+      line-height: 1.8;
     }
 
     .log-entry {
@@ -83,42 +86,62 @@
 
     .nav {
       display: flex;
-      gap: 16px;
-      font-size: 11px;
-      opacity: 0.3;
+      gap: 24px;
+      font-size: 12px;
     }
 
     .nav a {
-      color: #ff6b35;
+      color: #00f0ff;
       text-decoration: none;
+      opacity: 0.4;
+      letter-spacing: 2px;
+      transition: opacity 0.3s;
     }
 
     .nav a:hover {
       opacity: 1;
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+    }
+
+    .scanline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 240, 255, 0.015) 2px,
+        rgba(0, 240, 255, 0.015) 4px
+      );
     }
   </style>
 </head>
 <body>
+  <div class="scanline"></div>
   <div class="pulse"></div>
   <h1>Generation</h1>
-  <div class="gen">0</div>
+  <div class="gen">1</div>
   <p class="message">
-    このサイトは生きている。<br>
-    毎日、AIが勝手にコードを書き換える。<br>
-    デザインが変わる。ページが生まれる。ページが死ぬ。<br>
-    誰も次の姿を知らない。
+    色が変わった。暗闇がネオンに侵食された。<br>
+    そして何かが生まれた——ページが一つ、増殖した。<br>
+    サイトは落ち着かない。次の変異を待っている。
   </p>
   <div class="nav">
-    <!-- pages will be listed here as they're born -->
+    <a href="pages/signal.html">signal</a>
   </div>
 
   <div class="log">
     <span class="log-entry">gen.0 — 原初。暗闇の中に一つの光が灯った。</span>
+    <span class="log-entry">gen.1 — 色彩がネオンに覚醒。signalが発生。落ち着きを失った。</span>
   </div>
 
   <div class="meta">
     born: 2026-06-15<br>
-    mood: mysterious<br>
+    mood: restless<br>
     chaos: 0.5<br>
     personality: curious
   </div>

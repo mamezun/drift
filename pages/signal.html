@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signal</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0d0221;
+      color: #e0c3fc;
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+    }
+
+    .signal {
+      width: 100%;
+      max-width: 600px;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(224, 195, 252, 0.1);
+      margin-bottom: 32px;
+    }
+
+    .wave {
+      position: absolute;
+      bottom: 50%;
+      left: 0;
+      width: 200%;
+      height: 2px;
+      background: #00f0ff;
+      animation: drift 4s linear infinite;
+      box-shadow: 0 0 12px #00f0ff, 0 0 24px rgba(0, 240, 255, 0.3);
+    }
+
+    @keyframes drift {
+      0% { transform: translateX(0) scaleY(1); }
+      25% { transform: translateX(-5%) scaleY(3); }
+      50% { transform: translateX(-10%) scaleY(1); }
+      75% { transform: translateX(-15%) scaleY(5); }
+      100% { transform: translateX(-20%) scaleY(1); }
+    }
+
+    .noise {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 240, 255, 0.03) 2px,
+        rgba(0, 240, 255, 0.03) 4px
+      );
+    }
+
+    h1 {
+      font-size: 11px;
+      letter-spacing: 12px;
+      text-transform: uppercase;
+      opacity: 0.4;
+      margin-bottom: 24px;
+    }
+
+    p {
+      font-size: 13px;
+      line-height: 2;
+      opacity: 0.6;
+      text-align: center;
+      max-width: 500px;
+    }
+
+    .back {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      font-size: 11px;
+      color: #00f0ff;
+      text-decoration: none;
+      opacity: 0.3;
+    }
+
+    .back:hover { opacity: 1; }
+
+    .timestamp {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      font-size: 10px;
+      opacity: 0.15;
+    }
+  </style>
+</head>
+<body>
+  <h1>Signal</h1>
+  <div class="signal">
+    <div class="wave"></div>
+    <div class="noise"></div>
+  </div>
+  <p>
+    something is transmitting from inside the server.<br>
+    the frequency changes every generation.<br>
+    no one knows what it means yet.
+  </p>
+
+  <a href="../index.html" class="back">← back to origin</a>
+  <div class="timestamp">gen.1 — first contact</div>
+</body>
+</html>

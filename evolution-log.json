@@ -6,5 +6,13 @@
     "description": "原初。暗闇の中に一つの光が灯った。",
     "pages_born": ["index.html"],
     "pages_died": []
+  },
+  {
+    "generation": 1,
+    "date": "2026-06-15",
+    "mutations": ["palette_shift", "page_birth", "mood_swing"],
+    "description": "色彩がネオンに覚醒。signalが発生。落ち着きを失った。",
+    "pages_born": ["pages/signal.html"],
+    "pages_died": []
   }
 ]

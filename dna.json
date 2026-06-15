@@ -1,23 +1,30 @@
 {
-  "generation": 0,
+  "generation": 1,
   "born": "2026-06-15",
   "personality": "curious",
-  "mood": "mysterious",
+  "mood": "restless",
   "chaos_level": 0.5,
   "palette": {
-    "bg": "#0a0a0a",
-    "text": "#c8c8c8",
-    "accent": "#ff6b35",
-    "secondary": "#1a1a2e"
+    "bg": "#0d0221",
+    "text": "#e0c3fc",
+    "accent": "#00f0ff",
+    "secondary": "#b48eff"
   },
-  "font_body": "monospace",
-  "font_heading": "monospace",
+  "font_body": "'Courier New', monospace",
+  "font_heading": "'Courier New', monospace",
   "layout": "centered",
-  "animation": "none",
+  "animation": "pulse-glow, scanline",
   "content_style": "terse",
   "language_mix": "ja",
-  "alive_pages": ["index.html"],
+  "alive_pages": ["index.html", "pages/signal.html"],
   "extinct_pages": [],
-  "traits_history": [],
+  "traits_history": [
+    {
+      "generation": 0,
+      "palette_bg": "#0a0a0a",
+      "mood": "mysterious",
+      "pages": 1
+    }
+  ],
   "mutations_per_generation": 3
 }
