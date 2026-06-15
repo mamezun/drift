@@ -1,0 +1,23 @@
+{
+  "generation": 0,
+  "born": "2026-06-15",
+  "personality": "curious",
+  "mood": "mysterious",
+  "chaos_level": 0.5,
+  "palette": {
+    "bg": "#0a0a0a",
+    "text": "#c8c8c8",
+    "accent": "#ff6b35",
+    "secondary": "#1a1a2e"
+  },
+  "font_body": "monospace",
+  "font_heading": "monospace",
+  "layout": "centered",
+  "animation": "none",
+  "content_style": "terse",
+  "language_mix": "ja",
+  "alive_pages": ["index.html"],
+  "extinct_pages": [],
+  "traits_history": [],
+  "mutations_per_generation": 3
+}

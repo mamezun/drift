@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generation 0</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0a;
+      color: #c8c8c8;
+      font-family: monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .pulse {
+      width: 12px;
+      height: 12px;
+      background: #ff6b35;
+      border-radius: 50%;
+      animation: pulse 3s ease-in-out infinite;
+      margin-bottom: 48px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.8); }
+    }
+
+    h1 {
+      font-size: 14px;
+      font-weight: normal;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .gen {
+      font-size: 72px;
+      font-weight: bold;
+      color: #ff6b35;
+      line-height: 1;
+      margin-bottom: 32px;
+    }
+
+    .message {
+      font-size: 13px;
+      opacity: 0.5;
+      max-width: 400px;
+      text-align: center;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+
+    .log {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      font-size: 11px;
+      opacity: 0.25;
+      line-height: 1.6;
+    }
+
+    .log-entry {
+      display: block;
+    }
+
+    .meta {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      font-size: 10px;
+      opacity: 0.2;
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    .nav {
+      display: flex;
+      gap: 16px;
+      font-size: 11px;
+      opacity: 0.3;
+    }
+
+    .nav a {
+      color: #ff6b35;
+      text-decoration: none;
+    }
+
+    .nav a:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="pulse"></div>
+  <h1>Generation</h1>
+  <div class="gen">0</div>
+  <p class="message">
+    このサイトは生きている。<br>
+    毎日、AIが勝手にコードを書き換える。<br>
+    デザインが変わる。ページが生まれる。ページが死ぬ。<br>
+    誰も次の姿を知らない。
+  </p>
+  <div class="nav">
+    <!-- pages will be listed here as they're born -->
+  </div>
+
+  <div class="log">
+    <span class="log-entry">gen.0 — 原初。暗闇の中に一つの光が灯った。</span>
+  </div>
+
+  <div class="meta">
+    born: 2026-06-15<br>
+    mood: mysterious<br>
+    chaos: 0.5<br>
+    personality: curious
+  </div>
+</body>
+</html>
