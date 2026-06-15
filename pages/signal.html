@@ -8,8 +8,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #001220;
-      color: #a8f7e8;
+      background: #0a0000;
+      color: #cc4422;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -25,7 +25,7 @@
       height: 200px;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(168, 247, 232, 0.1);
+      border: 1px solid rgba(204, 68, 34, 0.08);
       margin-bottom: 32px;
     }
 
@@ -35,31 +35,28 @@
       left: 0;
       width: 200%;
       height: 2px;
-      background: #00e5cc;
+      background: #ff3300;
       animation: drift 4s linear infinite;
-      box-shadow: 0 0 12px #00e5cc, 0 0 24px rgba(0, 229, 204, 0.3);
+      box-shadow: 0 0 10px #ff3300, 0 0 20px rgba(255, 51, 0, 0.2);
     }
 
     @keyframes drift {
-      0% { transform: translateX(0) scaleY(1); }
-      25% { transform: translateX(-5%) scaleY(3); }
-      50% { transform: translateX(-10%) scaleY(1); }
-      75% { transform: translateX(-15%) scaleY(5); }
+      0%   { transform: translateX(0) scaleY(1); }
+      25%  { transform: translateX(-5%) scaleY(3); }
+      50%  { transform: translateX(-10%) scaleY(1); }
+      75%  { transform: translateX(-15%) scaleY(5); }
       100% { transform: translateX(-20%) scaleY(1); }
     }
 
     .noise {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: repeating-linear-gradient(
         0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 229, 204, 0.03) 2px,
-        rgba(0, 229, 204, 0.03) 4px
+        transparent, transparent 2px,
+        rgba(255, 51, 0, 0.025) 2px,
+        rgba(255, 51, 0, 0.025) 4px
       );
     }
 
@@ -67,14 +64,15 @@
       font-size: 11px;
       letter-spacing: 12px;
       text-transform: uppercase;
-      opacity: 0.4;
+      opacity: 0.3;
       margin-bottom: 24px;
+      color: #662200;
     }
 
     p {
       font-size: 13px;
       line-height: 2;
-      opacity: 0.6;
+      opacity: 0.45;
       text-align: center;
       max-width: 500px;
     }
@@ -84,9 +82,9 @@
       bottom: 24px;
       left: 24px;
       font-size: 11px;
-      color: #00e5cc;
+      color: #ff3300;
       text-decoration: none;
-      opacity: 0.3;
+      opacity: 0.25;
       transition: opacity 0.3s;
     }
 
@@ -97,7 +95,7 @@
       top: 24px;
       right: 24px;
       font-size: 10px;
-      opacity: 0.15;
+      opacity: 0.12;
     }
   </style>
 </head>

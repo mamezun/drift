@@ -1,22 +1,22 @@
 {
-  "generation": 2,
+  "generation": 3,
   "born": "2026-06-15",
-  "personality": "melancholic",
-  "mood": "contemplative",
-  "chaos_level": 0.7,
+  "personality": "nihilistic",
+  "mood": "fractured",
+  "chaos_level": 0.85,
   "palette": {
-    "bg": "#001220",
-    "text": "#a8f7e8",
-    "accent": "#00e5cc",
-    "secondary": "#4dd9b8"
+    "bg": "#0a0000",
+    "text": "#cc4422",
+    "accent": "#ff3300",
+    "secondary": "#882200"
   },
   "font_body": "'Courier New', monospace",
   "font_heading": "'Courier New', monospace",
   "layout": "centered",
-  "animation": "pulse-glow, scanline, ripple",
+  "animation": "pulse, glitch, scanline, tear",
   "content_style": "terse",
   "language_mix": "ja",
-  "alive_pages": ["index.html", "pages/signal.html", "pages/depth.html"],
+  "alive_pages": ["index.html", "pages/signal.html", "pages/depth.html", "pages/entropy.html"],
   "extinct_pages": [],
   "traits_history": [
     {
@@ -30,6 +30,12 @@
       "palette_bg": "#0d0221",
       "mood": "restless",
       "pages": 2
+    },
+    {
+      "generation": 2,
+      "palette_bg": "#001220",
+      "mood": "contemplative",
+      "pages": 3
     }
   ],
   "mutations_per_generation": 3

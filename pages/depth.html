@@ -8,8 +8,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #001220;
-      color: #a8f7e8;
+      background: #0a0000;
+      color: #cc4422;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -24,7 +24,7 @@
       position: fixed;
       width: 2px;
       height: 2px;
-      background: #00e5cc;
+      background: #ff3300;
       border-radius: 50%;
       opacity: 0;
       animation: fall linear infinite;
@@ -32,8 +32,8 @@
 
     @keyframes fall {
       0%   { opacity: 0; transform: translateY(-10px); }
-      10%  { opacity: 0.5; }
-      90%  { opacity: 0.2; }
+      10%  { opacity: 0.3; }
+      90%  { opacity: 0.1; }
       100% { opacity: 0; transform: translateY(105vh); }
     }
 
@@ -41,20 +41,21 @@
       font-size: 11px;
       letter-spacing: 12px;
       text-transform: uppercase;
-      opacity: 0.4;
+      opacity: 0.3;
       margin-bottom: 32px;
+      color: #662200;
     }
 
     .pressure {
       font-size: 52px;
-      color: #00e5cc;
+      color: #ff3300;
       margin-bottom: 8px;
-      text-shadow: 0 0 24px rgba(0, 229, 204, 0.4);
+      text-shadow: 0 0 20px rgba(255, 51, 0, 0.3);
     }
 
     .unit {
       font-size: 11px;
-      opacity: 0.3;
+      opacity: 0.25;
       letter-spacing: 4px;
       margin-bottom: 48px;
     }
@@ -62,17 +63,18 @@
     p {
       font-size: 13px;
       line-height: 2;
-      opacity: 0.5;
+      opacity: 0.4;
       text-align: center;
       max-width: 480px;
+      color: #994433;
     }
 
     .depth-bar {
       width: 1px;
       height: 80px;
-      background: linear-gradient(to bottom, #00e5cc 0%, transparent 100%);
+      background: linear-gradient(to bottom, #ff3300 0%, transparent 100%);
       margin: 40px auto;
-      opacity: 0.4;
+      opacity: 0.3;
     }
 
     .back {
@@ -80,9 +82,9 @@
       bottom: 24px;
       left: 24px;
       font-size: 11px;
-      color: #00e5cc;
+      color: #ff3300;
       text-decoration: none;
-      opacity: 0.3;
+      opacity: 0.25;
       transition: opacity 0.3s;
     }
 
@@ -93,7 +95,7 @@
       top: 24px;
       right: 24px;
       font-size: 10px;
-      opacity: 0.15;
+      opacity: 0.12;
     }
   </style>
 </head>

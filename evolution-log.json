@@ -22,5 +22,13 @@
     "description": "深海へ落ちた。好奇心が重力に飲まれ、溶けてメランコリーになった。色は紫から蒼へ。蒼は底へ向かって濃くなる。",
     "pages_born": ["pages/depth.html"],
     "pages_died": []
+  },
+  {
+    "generation": 3,
+    "date": "2026-06-16",
+    "mutations": ["style_overhaul", "page_birth", "personality_shift"],
+    "description": "意味が燃えた。蒼い深海は灼けた赤へと裏返り、秩序の残骸だけが漂う。ニヒリズムが骨格に刻まれ、エントロピーが新たなページとして誕生した。画面は時折裂ける——それは問いではなく、答えの不在の証明だ。",
+    "pages_born": ["pages/entropy.html"],
+    "pages_died": []
   }
 ]
