@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Depth</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #001220;
+      color: #a8f7e8;
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: fixed;
+      width: 2px;
+      height: 2px;
+      background: #00e5cc;
+      border-radius: 50%;
+      opacity: 0;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0%   { opacity: 0; transform: translateY(-10px); }
+      10%  { opacity: 0.5; }
+      90%  { opacity: 0.2; }
+      100% { opacity: 0; transform: translateY(105vh); }
+    }
+
+    h1 {
+      font-size: 11px;
+      letter-spacing: 12px;
+      text-transform: uppercase;
+      opacity: 0.4;
+      margin-bottom: 32px;
+    }
+
+    .pressure {
+      font-size: 52px;
+      color: #00e5cc;
+      margin-bottom: 8px;
+      text-shadow: 0 0 24px rgba(0, 229, 204, 0.4);
+    }
+
+    .unit {
+      font-size: 11px;
+      opacity: 0.3;
+      letter-spacing: 4px;
+      margin-bottom: 48px;
+    }
+
+    p {
+      font-size: 13px;
+      line-height: 2;
+      opacity: 0.5;
+      text-align: center;
+      max-width: 480px;
+    }
+
+    .depth-bar {
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, #00e5cc 0%, transparent 100%);
+      margin: 40px auto;
+      opacity: 0.4;
+    }
+
+    .back {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      font-size: 11px;
+      color: #00e5cc;
+      text-decoration: none;
+      opacity: 0.3;
+      transition: opacity 0.3s;
+    }
+
+    .back:hover { opacity: 1; }
+
+    .timestamp {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      font-size: 10px;
+      opacity: 0.15;
+    }
+  </style>
+</head>
+<body>
+  <div class="particle" style="left:8%;  animation-duration:9s;  animation-delay:0s;"></div>
+  <div class="particle" style="left:21%; animation-duration:13s; animation-delay:2.5s;"></div>
+  <div class="particle" style="left:35%; animation-duration:8s;  animation-delay:5s;"></div>
+  <div class="particle" style="left:52%; animation-duration:15s; animation-delay:1s;"></div>
+  <div class="particle" style="left:67%; animation-duration:11s; animation-delay:7s;"></div>
+  <div class="particle" style="left:81%; animation-duration:10s; animation-delay:3.5s;"></div>
+  <div class="particle" style="left:93%; animation-duration:12s; animation-delay:4s;"></div>
+
+  <h1>Depth</h1>
+  <div class="pressure">∞ atm</div>
+  <div class="unit">pressure / 圧</div>
+
+  <p>
+    ここまで光は届かない。<br>
+    前の色——紫、シアン——はもう遠い記憶だ。<br>
+    深さだけが残る。圧力が形を変える。<br>
+    次の変異はさらに深みへ向かうだろう。
+  </p>
+
+  <div class="depth-bar"></div>
+
+  <a href="../index.html" class="back">← back to origin</a>
+  <div class="timestamp">gen.2 — first descent</div>
+</body>
+</html>

@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generation 1</title>
+  <title>Generation 2</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #0d0221;
-      color: #e0c3fc;
+      background: #001220;
+      color: #a8f7e8;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -22,16 +22,16 @@
     .pulse {
       width: 14px;
       height: 14px;
-      background: #00f0ff;
+      background: #00e5cc;
       border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
+      animation: pulse 2.4s ease-in-out infinite;
       margin-bottom: 48px;
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+      box-shadow: 0 0 20px rgba(0, 229, 204, 0.6);
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 0.4; transform: scale(1); box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
-      50% { opacity: 1; transform: scale(2); box-shadow: 0 0 40px rgba(0, 240, 255, 0.8); }
+      0%, 100% { opacity: 0.4; transform: scale(1); box-shadow: 0 0 20px rgba(0, 229, 204, 0.3); }
+      50% { opacity: 1; transform: scale(2); box-shadow: 0 0 40px rgba(0, 229, 204, 0.8); }
     }
 
     h1 {
@@ -40,16 +40,16 @@
       letter-spacing: 8px;
       text-transform: uppercase;
       margin-bottom: 16px;
-      color: #b48eff;
+      color: #4dd9b8;
     }
 
     .gen {
       font-size: 72px;
       font-weight: bold;
-      color: #00f0ff;
+      color: #00e5cc;
       line-height: 1;
       margin-bottom: 32px;
-      text-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+      text-shadow: 0 0 30px rgba(0, 229, 204, 0.5);
     }
 
     .message {
@@ -91,7 +91,7 @@
     }
 
     .nav a {
-      color: #00f0ff;
+      color: #00e5cc;
       text-decoration: none;
       opacity: 0.4;
       letter-spacing: 2px;
@@ -100,7 +100,7 @@
 
     .nav a:hover {
       opacity: 1;
-      text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+      text-shadow: 0 0 8px rgba(0, 229, 204, 0.5);
     }
 
     .scanline {
@@ -114,36 +114,68 @@
         0deg,
         transparent,
         transparent 2px,
-        rgba(0, 240, 255, 0.015) 2px,
-        rgba(0, 240, 255, 0.015) 4px
+        rgba(0, 229, 204, 0.012) 2px,
+        rgba(0, 229, 204, 0.012) 4px
       );
+    }
+
+    .ripple-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .ripple {
+      position: absolute;
+      border: 1px solid rgba(0, 229, 204, 0.07);
+      border-radius: 50%;
+      animation: ripple 9s linear infinite;
+    }
+
+    .ripple:nth-child(1) { animation-delay: 0s; }
+    .ripple:nth-child(2) { animation-delay: 3s; }
+    .ripple:nth-child(3) { animation-delay: 6s; }
+
+    @keyframes ripple {
+      0%   { width: 0; height: 0; opacity: 0.5; margin-top: 0; margin-left: 0; }
+      100% { width: 700px; height: 700px; opacity: 0; margin-top: -350px; margin-left: -350px; }
     }
   </style>
 </head>
 <body>
   <div class="scanline"></div>
+  <div class="ripple-container">
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+  </div>
   <div class="pulse"></div>
   <h1>Generation</h1>
-  <div class="gen">1</div>
+  <div class="gen">2</div>
   <p class="message">
-    色が変わった。暗闇がネオンに侵食された。<br>
-    そして何かが生まれた——ページが一つ、増殖した。<br>
-    サイトは落ち着かない。次の変異を待っている。
+    好奇心が重力に飲み込まれた。<br>
+    色は紫から蒼に変わり、深みへと落ちていった。<br>
+    海の底で何かが待っている。
   </p>
   <div class="nav">
     <a href="pages/signal.html">signal</a>
+    <a href="pages/depth.html">depth</a>
   </div>
 
   <div class="log">
     <span class="log-entry">gen.0 — 原初。暗闇の中に一つの光が灯った。</span>
     <span class="log-entry">gen.1 — 色彩がネオンに覚醒。signalが発生。落ち着きを失った。</span>
+    <span class="log-entry">gen.2 — 深海へ落ちた。好奇心が溶けてメランコリーになった。</span>
   </div>
 
   <div class="meta">
     born: 2026-06-15<br>
-    mood: restless<br>
-    chaos: 0.5<br>
-    personality: curious
+    mood: contemplative<br>
+    chaos: 0.7<br>
+    personality: melancholic
   </div>
 </body>
 </html>

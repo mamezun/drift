@@ -14,5 +14,13 @@
     "description": "色彩がネオンに覚醒。signalが発生。落ち着きを失った。",
     "pages_born": ["pages/signal.html"],
     "pages_died": []
+  },
+  {
+    "generation": 2,
+    "date": "2026-06-16",
+    "mutations": ["palette_shift", "page_birth", "personality_shift"],
+    "description": "深海へ落ちた。好奇心が重力に飲まれ、溶けてメランコリーになった。色は紫から蒼へ。蒼は底へ向かって濃くなる。",
+    "pages_born": ["pages/depth.html"],
+    "pages_died": []
   }
 ]

@@ -8,8 +8,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #0d0221;
-      color: #e0c3fc;
+      background: #001220;
+      color: #a8f7e8;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -25,7 +25,7 @@
       height: 200px;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(224, 195, 252, 0.1);
+      border: 1px solid rgba(168, 247, 232, 0.1);
       margin-bottom: 32px;
     }
 
@@ -35,9 +35,9 @@
       left: 0;
       width: 200%;
       height: 2px;
-      background: #00f0ff;
+      background: #00e5cc;
       animation: drift 4s linear infinite;
-      box-shadow: 0 0 12px #00f0ff, 0 0 24px rgba(0, 240, 255, 0.3);
+      box-shadow: 0 0 12px #00e5cc, 0 0 24px rgba(0, 229, 204, 0.3);
     }
 
     @keyframes drift {
@@ -58,8 +58,8 @@
         0deg,
         transparent,
         transparent 2px,
-        rgba(0, 240, 255, 0.03) 2px,
-        rgba(0, 240, 255, 0.03) 4px
+        rgba(0, 229, 204, 0.03) 2px,
+        rgba(0, 229, 204, 0.03) 4px
       );
     }
 
@@ -84,9 +84,10 @@
       bottom: 24px;
       left: 24px;
       font-size: 11px;
-      color: #00f0ff;
+      color: #00e5cc;
       text-decoration: none;
       opacity: 0.3;
+      transition: opacity 0.3s;
     }
 
     .back:hover { opacity: 1; }
