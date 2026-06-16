@@ -8,8 +8,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #0a0000;
-      color: #cc4422;
+      background: #0d0025;
+      color: #ff71ce;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -24,7 +24,7 @@
       position: fixed;
       width: 2px;
       height: 2px;
-      background: #ff3300;
+      background: #b967ff;
       border-radius: 50%;
       opacity: 0;
       animation: fall linear infinite;
@@ -32,8 +32,8 @@
 
     @keyframes fall {
       0%   { opacity: 0; transform: translateY(-10px); }
-      10%  { opacity: 0.3; }
-      90%  { opacity: 0.1; }
+      10%  { opacity: 0.5; }
+      90%  { opacity: 0.15; }
       100% { opacity: 0; transform: translateY(105vh); }
     }
 
@@ -43,14 +43,14 @@
       text-transform: uppercase;
       opacity: 0.3;
       margin-bottom: 32px;
-      color: #662200;
+      color: #01cdfe;
     }
 
     .pressure {
       font-size: 52px;
-      color: #ff3300;
+      color: #ff71ce;
       margin-bottom: 8px;
-      text-shadow: 0 0 20px rgba(255, 51, 0, 0.3);
+      text-shadow: 0 0 24px rgba(255, 113, 206, 0.4);
     }
 
     .unit {
@@ -58,6 +58,7 @@
       opacity: 0.25;
       letter-spacing: 4px;
       margin-bottom: 48px;
+      color: #01cdfe;
     }
 
     p {
@@ -66,13 +67,13 @@
       opacity: 0.4;
       text-align: center;
       max-width: 480px;
-      color: #994433;
+      color: #b967ff;
     }
 
     .depth-bar {
       width: 1px;
       height: 80px;
-      background: linear-gradient(to bottom, #ff3300 0%, transparent 100%);
+      background: linear-gradient(to bottom, #ff71ce 0%, transparent 100%);
       margin: 40px auto;
       opacity: 0.3;
     }
@@ -82,7 +83,7 @@
       bottom: 24px;
       left: 24px;
       font-size: 11px;
-      color: #ff3300;
+      color: #01cdfe;
       text-decoration: none;
       opacity: 0.25;
       transition: opacity 0.3s;
@@ -96,6 +97,7 @@
       right: 24px;
       font-size: 10px;
       opacity: 0.12;
+      color: #ff71ce;
     }
   </style>
 </head>
@@ -114,9 +116,9 @@
 
   <p>
     ここまで光は届かない。<br>
-    前の色——紫、シアン——はもう遠い記憶だ。<br>
-    深さだけが残る。圧力が形を変える。<br>
-    次の変異はさらに深みへ向かうだろう。
+    前の色——紫、シアン——は戻ってきた。<br>
+    深さが変わった。圧力が色を変えた。<br>
+    暗闇は今、色で満たされている。
   </p>
 
   <div class="depth-bar"></div>

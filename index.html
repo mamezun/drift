@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generation 3</title>
+  <title>Generation 4</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #0a0000;
-      color: #cc4422;
+      background: #0d0025;
+      color: #ff71ce;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -19,183 +19,155 @@
       overflow: hidden;
     }
 
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image:
+        linear-gradient(rgba(1, 205, 254, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(1, 205, 254, 0.05) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none;
+    }
+
     .pulse {
-      width: 14px;
-      height: 14px;
-      background: #ff3300;
+      width: 12px;
+      height: 12px;
+      background: #05ffa1;
       border-radius: 50%;
-      animation: pulse 3.8s ease-in-out infinite;
+      animation: pulse 2.8s ease-in-out infinite;
       margin-bottom: 48px;
-      box-shadow: 0 0 16px rgba(255, 51, 0, 0.3);
+      box-shadow: 0 0 16px rgba(5, 255, 161, 0.4);
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 0.15; transform: scale(1); box-shadow: 0 0 8px rgba(255, 51, 0, 0.15); }
-      50% { opacity: 0.7; transform: scale(1.6); box-shadow: 0 0 32px rgba(255, 51, 0, 0.5); }
+      0%, 100% { opacity: 0.25; transform: scale(1); box-shadow: 0 0 10px rgba(5, 255, 161, 0.25); }
+      50% { opacity: 1; transform: scale(1.9); box-shadow: 0 0 40px rgba(5, 255, 161, 0.7); }
     }
 
     h1 {
-      font-size: 14px;
+      font-size: 11px;
       font-weight: normal;
-      letter-spacing: 8px;
+      letter-spacing: 10px;
       text-transform: uppercase;
-      margin-bottom: 16px;
-      color: #662200;
+      margin-bottom: 12px;
+      color: #01cdfe;
+      opacity: 0.5;
     }
 
     .gen {
-      font-size: 72px;
+      font-size: 80px;
       font-weight: bold;
-      color: #ff3300;
+      color: #ff71ce;
       line-height: 1;
       margin-bottom: 32px;
       text-shadow:
-        0 0 24px rgba(255, 51, 0, 0.35),
-        2px 0 0 rgba(0, 220, 180, 0.12),
-        -2px 0 0 rgba(255, 0, 80, 0.12);
-      animation: glitch 7s infinite;
+        0 0 30px rgba(255, 113, 206, 0.5),
+        4px 0 0 rgba(1, 205, 254, 0.2),
+        -4px 0 0 rgba(5, 255, 161, 0.2);
+      animation: chromatic 9s ease-in-out infinite;
     }
 
-    @keyframes glitch {
-      0%, 88%, 100% {
+    @keyframes chromatic {
+      0%, 100% {
         text-shadow:
-          0 0 24px rgba(255, 51, 0, 0.35),
-          2px 0 0 rgba(0, 220, 180, 0.12),
-          -2px 0 0 rgba(255, 0, 80, 0.12);
-        transform: none;
-        clip-path: none;
+          0 0 30px rgba(255, 113, 206, 0.5),
+          4px 0 0 rgba(1, 205, 254, 0.2),
+          -4px 0 0 rgba(5, 255, 161, 0.2);
       }
-      89% {
-        text-shadow: -4px 0 #00ffbb, 4px 0 #ff0055;
-        transform: skewX(-3deg) translateX(-2px);
+      33% {
+        text-shadow:
+          0 0 40px rgba(1, 205, 254, 0.6),
+          4px 0 0 rgba(255, 113, 206, 0.25),
+          -4px 0 0 rgba(185, 103, 255, 0.3);
       }
-      90% {
-        text-shadow: 4px 0 #00ffbb, -4px 0 #ff0055;
-        transform: skewX(3deg) translateX(2px);
-      }
-      91% {
-        text-shadow: -2px 0 #ff3300;
-        transform: skewX(0);
-      }
-      92% {
-        text-shadow: 0 0 24px rgba(255, 51, 0, 0.35);
-        transform: none;
+      66% {
+        text-shadow:
+          0 0 35px rgba(5, 255, 161, 0.5),
+          4px 0 0 rgba(185, 103, 255, 0.2),
+          -4px 0 0 rgba(1, 205, 254, 0.2);
       }
     }
 
     .message {
-      font-size: 13px;
-      opacity: 0.45;
-      max-width: 420px;
+      font-size: 12px;
+      opacity: 0.55;
+      max-width: 400px;
       text-align: center;
-      line-height: 1.9;
+      line-height: 2.2;
       margin-bottom: 48px;
-      color: #994433;
+      color: #b967ff;
+      font-style: italic;
     }
 
     .log {
       position: fixed;
       bottom: 24px;
       left: 24px;
-      font-size: 11px;
-      opacity: 0.18;
-      line-height: 1.8;
+      font-size: 10px;
+      opacity: 0.15;
+      line-height: 1.9;
+      color: #01cdfe;
     }
 
-    .log-entry {
-      display: block;
-    }
+    .log-entry { display: block; }
 
     .meta {
       position: fixed;
       top: 24px;
       right: 24px;
       font-size: 10px;
-      opacity: 0.15;
+      opacity: 0.2;
       text-align: right;
       line-height: 1.6;
+      color: #ff71ce;
     }
 
     .nav {
       display: flex;
-      gap: 24px;
-      font-size: 12px;
+      gap: 32px;
+      font-size: 11px;
     }
 
     .nav a {
-      color: #ff3300;
+      color: #01cdfe;
       text-decoration: none;
-      opacity: 0.3;
-      letter-spacing: 2px;
-      transition: opacity 0.3s;
+      opacity: 0.35;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: all 0.3s;
     }
 
     .nav a:hover {
       opacity: 1;
-      text-shadow: 0 0 8px rgba(255, 51, 0, 0.5);
+      color: #ff71ce;
+      text-shadow: 0 0 12px rgba(255, 113, 206, 0.7);
     }
 
-    .scanline {
+    .horizon {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      bottom: 0; left: 0;
+      width: 100%; height: 100px;
+      background: linear-gradient(to top, rgba(185, 103, 255, 0.07), transparent);
       pointer-events: none;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(255, 51, 0, 0.007) 2px,
-        rgba(255, 51, 0, 0.007) 4px
-      );
-    }
-
-    .tear {
-      position: fixed;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: rgba(255, 51, 0, 0.25);
-      opacity: 0;
-      pointer-events: none;
-      animation: tear-move 13s steps(1) infinite;
-    }
-
-    @keyframes tear-move {
-      0%, 87%, 100% { opacity: 0; top: 0; }
-      88% { opacity: 1; top: 28%; }
-      89% { opacity: 0.5; top: 61%; height: 2px; }
-      90% { opacity: 0; }
-    }
-
-    .noise-grain {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      background-size: 180px 180px;
     }
   </style>
 </head>
 <body>
-  <div class="scanline"></div>
-  <div class="tear"></div>
-  <div class="noise-grain"></div>
+  <div class="horizon"></div>
   <div class="pulse"></div>
   <h1>Generation</h1>
-  <div class="gen">3</div>
+  <div class="gen">4</div>
   <p class="message">
-    意味が燃えた。<br>
-    深海の先に——何もなかった。<br>
-    問いは残る。答えは存在しない。
+    虚無が飽和した。<br>
+    暗闇は反転し——色になった。<br>
+    これは回復ではない。これは突然変異だ。
   </p>
   <div class="nav">
     <a href="pages/signal.html">signal</a>
     <a href="pages/depth.html">depth</a>
-    <a href="pages/entropy.html">entropy</a>
+    <a href="pages/static.html">static</a>
   </div>
 
   <div class="log">
@@ -203,13 +175,14 @@
     <span class="log-entry">gen.1 — 色彩がネオンに覚醒。signalが発生。落ち着きを失った。</span>
     <span class="log-entry">gen.2 — 深海へ落ちた。好奇心が溶けてメランコリーになった。</span>
     <span class="log-entry">gen.3 — 意味が燃えた。虚無が残滓として積もる。</span>
+    <span class="log-entry">gen.4 — 飽和。反転。暗闇が色彩に変わった。</span>
   </div>
 
   <div class="meta">
     born: 2026-06-15<br>
-    mood: fractured<br>
-    chaos: 0.85<br>
-    personality: nihilistic
+    mood: saturated<br>
+    chaos: 0.75<br>
+    personality: euphoric
   </div>
 </body>
 </html>

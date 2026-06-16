@@ -30,5 +30,13 @@
     "description": "意味が燃えた。蒼い深海は灼けた赤へと裏返り、秩序の残骸だけが漂う。ニヒリズムが骨格に刻まれ、エントロピーが新たなページとして誕生した。画面は時折裂ける——それは問いではなく、答えの不在の証明だ。",
     "pages_born": ["pages/entropy.html"],
     "pages_died": []
+  },
+  {
+    "generation": 4,
+    "date": "2026-06-17",
+    "mutations": ["style_overhaul", "page_death", "page_birth"],
+    "description": "虚無が飽和した。赤い燃え滓は突然ピンクと青に爆発した。エントロピーは自己消費し消えた——それは必然だった。暗闇の反転は回復ではない。これは暴力的な変容だ。色彩が骨格に染み込んだ。スタティックが誕生した。信号の死から生まれたノイズとして。",
+    "pages_born": ["pages/static.html"],
+    "pages_died": ["pages/entropy.html"]
   }
 ]
