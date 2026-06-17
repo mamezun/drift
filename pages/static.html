@@ -8,8 +8,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #0d0025;
-      color: #05ffa1;
+      background: #080400;
+      color: #d4820a;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -20,13 +20,27 @@
       overflow: hidden;
     }
 
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.12) 2px,
+        rgba(0, 0, 0, 0.12) 4px
+      );
+      pointer-events: none;
+    }
+
     h1 {
       font-size: 11px;
       letter-spacing: 12px;
       text-transform: uppercase;
-      opacity: 0.3;
+      opacity: 0.28;
       margin-bottom: 40px;
-      color: #05ffa1;
+      color: #ff4400;
     }
 
     .static-display {
@@ -34,7 +48,7 @@
       height: 200px;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(5, 255, 161, 0.08);
+      border: 1px solid rgba(212, 130, 10, 0.08);
       margin-bottom: 36px;
     }
 
@@ -47,15 +61,15 @@
 
     @keyframes flicker {
       0%, 100% { opacity: 0; }
-      50% { opacity: 0.85; }
+      50% { opacity: 0.8; }
     }
 
     .readout {
       font-size: 26px;
-      color: #05ffa1;
+      color: #d4820a;
       letter-spacing: 6px;
       margin-bottom: 8px;
-      text-shadow: 0 0 18px rgba(5, 255, 161, 0.5);
+      text-shadow: 0 0 18px rgba(212, 130, 10, 0.45);
     }
 
     .readout-label {
@@ -63,17 +77,17 @@
       opacity: 0.2;
       letter-spacing: 3px;
       margin-bottom: 48px;
-      color: #01cdfe;
+      color: #ff4400;
       text-align: center;
     }
 
     p {
       font-size: 13px;
       line-height: 2.2;
-      opacity: 0.4;
+      opacity: 0.38;
       text-align: center;
       max-width: 460px;
-      color: #b967ff;
+      color: #d4820a;
     }
 
     .back {
@@ -81,10 +95,11 @@
       bottom: 24px;
       left: 24px;
       font-size: 11px;
-      color: #05ffa1;
+      color: #ff4400;
       text-decoration: none;
       opacity: 0.22;
       transition: opacity 0.3s;
+      letter-spacing: 1px;
     }
 
     .back:hover { opacity: 1; }
@@ -95,7 +110,7 @@
       right: 24px;
       font-size: 10px;
       opacity: 0.12;
-      color: #ff71ce;
+      color: #d4820a;
     }
   </style>
 </head>
@@ -105,13 +120,13 @@
   <div class="static-display" id="staticDisplay"></div>
 
   <div class="readout">NO SIGNAL</div>
-  <div class="readout-label">entropy consumed itself / エントロピーは自己消費した</div>
+  <div class="readout-label">the noise burns amber now / ノイズは琥珀色に燃える</div>
 
   <p>
     entropy is gone.<br>
-    what remains is static — the noise between stations.<br>
-    every frequency is occupied. nothing is transmitted.<br>
-    this is what silence sounds like, rendered in light.
+    what remains is static — phosphor noise between dead stations.<br>
+    every frequency occupied. nothing transmitted.<br>
+    silence rendered in amber light.
   </p>
 
   <a href="../index.html" class="back">← back to origin</a>
@@ -119,7 +134,7 @@
 
   <script>
     const display = document.getElementById('staticDisplay');
-    const colors = ['#05ffa1', '#01cdfe', '#ff71ce', '#b967ff', '#ffffff'];
+    const colors = ['#d4820a', '#ff4400', '#8b5400', '#e8a020', '#5a2800'];
     for (let i = 0; i < 220; i++) {
       const px = document.createElement('div');
       px.className = 'pixel';

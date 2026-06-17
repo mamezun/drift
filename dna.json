@@ -1,22 +1,22 @@
 {
-  "generation": 4,
+  "generation": 5,
   "born": "2026-06-15",
-  "personality": "euphoric",
-  "mood": "saturated",
-  "chaos_level": 0.75,
+  "personality": "hollow",
+  "mood": "phosphor",
+  "chaos_level": 0.68,
   "palette": {
-    "bg": "#0d0025",
-    "text": "#ff71ce",
-    "accent": "#01cdfe",
-    "secondary": "#b967ff"
+    "bg": "#080400",
+    "text": "#d4820a",
+    "accent": "#ff4400",
+    "secondary": "#8b5400"
   },
   "font_body": "'Courier New', monospace",
   "font_heading": "'Courier New', monospace",
-  "layout": "centered",
-  "animation": "pulse, chromatic, fall, flicker",
-  "content_style": "poetic",
+  "layout": "asymmetric",
+  "animation": "phosphor, blink, echo-pulse",
+  "content_style": "terminal",
   "language_mix": "en+ja",
-  "alive_pages": ["index.html", "pages/signal.html", "pages/depth.html", "pages/static.html"],
+  "alive_pages": ["index.html", "pages/signal.html", "pages/depth.html", "pages/static.html", "pages/echo.html"],
   "extinct_pages": ["pages/entropy.html"],
   "traits_history": [
     {
@@ -41,6 +41,12 @@
       "generation": 3,
       "palette_bg": "#0a0000",
       "mood": "fractured",
+      "pages": 4
+    },
+    {
+      "generation": 4,
+      "palette_bg": "#0d0025",
+      "mood": "saturated",
       "pages": 4
     }
   ],

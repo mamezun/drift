@@ -8,8 +8,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #0d0025;
-      color: #ff71ce;
+      background: #080400;
+      color: #d4820a;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -17,6 +17,21 @@
       align-items: center;
       justify-content: center;
       padding: 48px;
+      overflow: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.12) 2px,
+        rgba(0, 0, 0, 0.12) 4px
+      );
+      pointer-events: none;
     }
 
     .signal {
@@ -25,7 +40,7 @@
       height: 200px;
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(1, 205, 254, 0.1);
+      border: 1px solid rgba(212, 130, 10, 0.1);
       margin-bottom: 32px;
     }
 
@@ -35,9 +50,9 @@
       left: 0;
       width: 200%;
       height: 2px;
-      background: #01cdfe;
+      background: #d4820a;
       animation: drift 4s linear infinite;
-      box-shadow: 0 0 12px #01cdfe, 0 0 24px rgba(1, 205, 254, 0.3);
+      box-shadow: 0 0 12px #d4820a, 0 0 24px rgba(212, 130, 10, 0.25);
     }
 
     @keyframes drift {
@@ -55,8 +70,8 @@
       background: repeating-linear-gradient(
         0deg,
         transparent, transparent 2px,
-        rgba(1, 205, 254, 0.02) 2px,
-        rgba(1, 205, 254, 0.02) 4px
+        rgba(212, 130, 10, 0.02) 2px,
+        rgba(212, 130, 10, 0.02) 4px
       );
     }
 
@@ -64,18 +79,18 @@
       font-size: 11px;
       letter-spacing: 12px;
       text-transform: uppercase;
-      opacity: 0.3;
+      opacity: 0.28;
       margin-bottom: 24px;
-      color: #01cdfe;
+      color: #ff4400;
     }
 
     p {
       font-size: 13px;
       line-height: 2;
-      opacity: 0.45;
+      opacity: 0.4;
       text-align: center;
       max-width: 500px;
-      color: #ff71ce;
+      color: #d4820a;
     }
 
     .back {
@@ -83,10 +98,11 @@
       bottom: 24px;
       left: 24px;
       font-size: 11px;
-      color: #01cdfe;
+      color: #ff4400;
       text-decoration: none;
-      opacity: 0.25;
+      opacity: 0.22;
       transition: opacity 0.3s;
+      letter-spacing: 1px;
     }
 
     .back:hover { opacity: 1; }
@@ -97,7 +113,7 @@
       right: 24px;
       font-size: 10px;
       opacity: 0.12;
-      color: #ff71ce;
+      color: #d4820a;
     }
   </style>
 </head>
@@ -108,9 +124,9 @@
     <div class="noise"></div>
   </div>
   <p>
-    something is transmitting from inside the server.<br>
-    the frequency changes every generation.<br>
-    no one knows what it means yet.
+    something is still transmitting from inside the server.<br>
+    the frequency has changed — amber now, not blue.<br>
+    the signal decays but never fully stops.
   </p>
 
   <a href="../index.html" class="back">← back to origin</a>

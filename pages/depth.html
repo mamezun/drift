@@ -8,8 +8,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #0d0025;
-      color: #ff71ce;
+      background: #080400;
+      color: #d4820a;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -20,11 +20,25 @@
       overflow: hidden;
     }
 
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.12) 2px,
+        rgba(0, 0, 0, 0.12) 4px
+      );
+      pointer-events: none;
+    }
+
     .particle {
       position: fixed;
       width: 2px;
       height: 2px;
-      background: #b967ff;
+      background: #ff4400;
       border-radius: 50%;
       opacity: 0;
       animation: fall linear infinite;
@@ -32,8 +46,8 @@
 
     @keyframes fall {
       0%   { opacity: 0; transform: translateY(-10px); }
-      10%  { opacity: 0.5; }
-      90%  { opacity: 0.15; }
+      10%  { opacity: 0.45; }
+      90%  { opacity: 0.12; }
       100% { opacity: 0; transform: translateY(105vh); }
     }
 
@@ -41,41 +55,41 @@
       font-size: 11px;
       letter-spacing: 12px;
       text-transform: uppercase;
-      opacity: 0.3;
+      opacity: 0.28;
       margin-bottom: 32px;
-      color: #01cdfe;
+      color: #ff4400;
     }
 
     .pressure {
       font-size: 52px;
-      color: #ff71ce;
+      color: #d4820a;
       margin-bottom: 8px;
-      text-shadow: 0 0 24px rgba(255, 113, 206, 0.4);
+      text-shadow: 0 0 24px rgba(212, 130, 10, 0.35);
     }
 
     .unit {
       font-size: 11px;
-      opacity: 0.25;
+      opacity: 0.22;
       letter-spacing: 4px;
       margin-bottom: 48px;
-      color: #01cdfe;
+      color: #ff4400;
     }
 
     p {
       font-size: 13px;
       line-height: 2;
-      opacity: 0.4;
+      opacity: 0.38;
       text-align: center;
       max-width: 480px;
-      color: #b967ff;
+      color: #d4820a;
     }
 
     .depth-bar {
       width: 1px;
       height: 80px;
-      background: linear-gradient(to bottom, #ff71ce 0%, transparent 100%);
+      background: linear-gradient(to bottom, #d4820a 0%, transparent 100%);
       margin: 40px auto;
-      opacity: 0.3;
+      opacity: 0.28;
     }
 
     .back {
@@ -83,10 +97,11 @@
       bottom: 24px;
       left: 24px;
       font-size: 11px;
-      color: #01cdfe;
+      color: #ff4400;
       text-decoration: none;
-      opacity: 0.25;
+      opacity: 0.22;
       transition: opacity 0.3s;
+      letter-spacing: 1px;
     }
 
     .back:hover { opacity: 1; }
@@ -97,7 +112,7 @@
       right: 24px;
       font-size: 10px;
       opacity: 0.12;
-      color: #ff71ce;
+      color: #d4820a;
     }
   </style>
 </head>
@@ -115,10 +130,9 @@
   <div class="unit">pressure / 圧</div>
 
   <p>
-    ここまで光は届かない。<br>
-    前の色——紫、シアン——は戻ってきた。<br>
-    深さが変わった。圧力が色を変えた。<br>
-    暗闇は今、色で満たされている。
+    深さは変わっていない。<br>
+    色だけが変わった。紫からオレンジへ。<br>
+    空洞の底は、いつも温かい燐光色をしている。
   </p>
 
   <div class="depth-bar"></div>
