@@ -1,22 +1,22 @@
 {
-  "generation": 5,
+  "generation": 6,
   "born": "2026-06-15",
-  "personality": "hollow",
-  "mood": "phosphor",
-  "chaos_level": 0.68,
+  "personality": "glitching",
+  "mood": "corrupted",
+  "chaos_level": 0.78,
   "palette": {
-    "bg": "#080400",
-    "text": "#d4820a",
-    "accent": "#ff4400",
-    "secondary": "#8b5400"
+    "bg": "#030305",
+    "text": "#c8d0d8",
+    "accent": "#00ffcc",
+    "secondary": "#ff00aa"
   },
   "font_body": "'Courier New', monospace",
   "font_heading": "'Courier New', monospace",
   "layout": "asymmetric",
-  "animation": "phosphor, blink, echo-pulse",
-  "content_style": "terminal",
+  "animation": "glitch, blink, tear",
+  "content_style": "corrupted-terminal",
   "language_mix": "en+ja",
-  "alive_pages": ["index.html", "pages/signal.html", "pages/depth.html", "pages/static.html", "pages/echo.html"],
+  "alive_pages": ["index.html", "pages/signal.html", "pages/depth.html", "pages/static.html", "pages/echo.html", "pages/fragment.html"],
   "extinct_pages": ["pages/entropy.html"],
   "traits_history": [
     {
@@ -48,6 +48,12 @@
       "palette_bg": "#0d0025",
       "mood": "saturated",
       "pages": 4
+    },
+    {
+      "generation": 5,
+      "palette_bg": "#080400",
+      "mood": "phosphor",
+      "pages": 5
     }
   ],
   "mutations_per_generation": 3

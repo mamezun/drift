@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generation 5</title>
+  <title>Generation 6</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #080400;
-      color: #d4820a;
+      background: #030305;
+      color: #c8d0d8;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       overflow: hidden;
       position: relative;
     }
 
-    /* CRT scanlines */
     body::after {
       content: '';
       position: fixed;
@@ -25,32 +24,59 @@
         0deg,
         transparent,
         transparent 2px,
-        rgba(0, 0, 0, 0.13) 2px,
-        rgba(0, 0, 0, 0.13) 4px
+        rgba(0, 255, 204, 0.04) 2px,
+        rgba(0, 255, 204, 0.04) 4px
       );
       pointer-events: none;
       z-index: 100;
     }
 
-    /* CRT vignette */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background: radial-gradient(ellipse at 38% 50%, transparent 42%, rgba(0, 0, 0, 0.88) 100%);
+      background: radial-gradient(ellipse at 38% 50%, transparent 42%, rgba(0, 0, 0, 0.93) 100%);
       pointer-events: none;
       z-index: 98;
     }
 
-    /* Faint watermark */
+    .glitch-tear {
+      position: fixed;
+      left: 0;
+      right: 0;
+      height: 1px;
+      opacity: 0;
+      z-index: 200;
+      pointer-events: none;
+    }
+    .glitch-tear.t1 {
+      background: #00ffcc;
+      animation: tear1 11s ease-in-out infinite;
+    }
+    .glitch-tear.t2 {
+      background: #ff00aa;
+      animation: tear1 11s ease-in-out infinite 4.7s;
+    }
+
+    @keyframes tear1 {
+      0%, 87%, 100% { opacity: 0; top: 50%; }
+      88% { opacity: 0.65; top: 31%; }
+      89% { opacity: 0.25; top: 68%; }
+      90% { opacity: 0.75; top: 19%; }
+      91% { opacity: 0; }
+      95% { opacity: 0; top: 50%; }
+      96% { opacity: 0.4; top: 44%; }
+      97% { opacity: 0; }
+    }
+
     .watermark {
       position: fixed;
       top: -40px;
       left: -30px;
       font-size: 380px;
       font-weight: bold;
-      color: #d4820a;
-      opacity: 0.025;
+      color: #00ffcc;
+      opacity: 0.016;
       line-height: 1;
       user-select: none;
       pointer-events: none;
@@ -62,13 +88,12 @@
       top: 32px;
       left: 44px;
       font-size: 9px;
-      opacity: 0.2;
+      opacity: 0.18;
       line-height: 2;
-      color: #d4820a;
+      color: #c8d0d8;
       z-index: 10;
     }
 
-    /* Main: left-of-center */
     .main {
       position: fixed;
       top: 50%;
@@ -82,33 +107,68 @@
       letter-spacing: 10px;
       text-transform: uppercase;
       opacity: 0.28;
-      color: #ff4400;
+      color: #00ffcc;
       margin-bottom: 10px;
     }
 
     .gen-big {
       font-size: 148px;
       font-weight: bold;
-      color: #d4820a;
+      color: #c8d0d8;
       line-height: 1;
       letter-spacing: -6px;
-      text-shadow:
-        0 0 40px rgba(212, 130, 10, 0.35),
-        0 0 80px rgba(212, 130, 10, 0.1);
-      animation: phosphor 11s ease-in-out infinite;
+      position: relative;
+      text-shadow: 0 0 40px rgba(200, 208, 216, 0.15);
+      animation: glitch-main 9s ease-in-out infinite;
     }
 
-    @keyframes phosphor {
-      0%, 100% { opacity: 1; filter: brightness(1); }
-      84% { opacity: 1; filter: brightness(1); }
-      86% { opacity: 0.55; filter: brightness(0.75); }
-      87% { opacity: 1; filter: brightness(1.3); }
-      93% { opacity: 1; filter: brightness(1); }
-      95% { opacity: 0.8; filter: brightness(0.88); }
-      96% { opacity: 1; filter: brightness(1); }
+    .gen-big::before,
+    .gen-big::after {
+      content: '6';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
     }
 
-    /* Message: right side */
+    .gen-big::before {
+      color: #ff00aa;
+      clip-path: polygon(0 0, 100% 0, 100% 38%, 0 38%);
+      animation: glitch-r 9s ease-in-out infinite;
+    }
+
+    .gen-big::after {
+      color: #00aaff;
+      clip-path: polygon(0 62%, 100% 62%, 100% 100%, 0 100%);
+      animation: glitch-b 9s ease-in-out infinite;
+    }
+
+    @keyframes glitch-main {
+      0%, 88%, 100% { transform: none; }
+      89% { transform: skewX(-1.5deg) translateX(3px); }
+      90% { transform: skewX(1deg) translateX(-2px); }
+      91% { transform: none; }
+      94% { transform: skewX(-0.5deg) translateX(1px); }
+      95% { transform: none; }
+    }
+
+    @keyframes glitch-r {
+      0%, 88%, 100% { opacity: 0; transform: none; }
+      89% { opacity: 0.85; transform: translateX(-5px); }
+      90% { opacity: 0.5; transform: translateX(3px); }
+      91% { opacity: 0; }
+      94% { opacity: 0.4; transform: translateX(-2px); }
+      95% { opacity: 0; }
+    }
+
+    @keyframes glitch-b {
+      0%, 88%, 100% { opacity: 0; transform: none; }
+      89% { opacity: 0.75; transform: translateX(5px); }
+      90% { opacity: 0.4; transform: translateX(-3px); }
+      91% { opacity: 0; }
+      94% { opacity: 0.3; transform: translateX(2px); }
+      95% { opacity: 0; }
+    }
+
     .message {
       position: fixed;
       right: 64px;
@@ -116,7 +176,7 @@
       transform: translateY(-50%);
       font-size: 12px;
       line-height: 2.4;
-      color: #d4820a;
+      color: #c8d0d8;
       text-align: right;
       max-width: 320px;
       opacity: 0;
@@ -125,14 +185,14 @@
     }
 
     @keyframes fadein {
-      to { opacity: 0.48; }
+      to { opacity: 0.44; }
     }
 
     .cursor {
       display: inline-block;
       width: 7px;
       height: 13px;
-      background: #d4820a;
+      background: #00ffcc;
       animation: blink 1.15s step-end infinite;
       vertical-align: middle;
       margin-left: 3px;
@@ -144,7 +204,6 @@
       50% { opacity: 0; }
     }
 
-    /* Scattered nav — bottom edge */
     .nav-link {
       position: fixed;
       bottom: 36px;
@@ -155,21 +214,22 @@
     }
 
     .nav-link a {
-      color: #ff4400;
+      color: #00ffcc;
       text-decoration: none;
-      opacity: 0.26;
+      opacity: 0.22;
       transition: all 0.4s;
     }
 
     .nav-link a:hover {
       opacity: 1;
-      text-shadow: 0 0 18px rgba(255, 68, 0, 0.9);
+      text-shadow: 0 0 18px rgba(0, 255, 204, 0.9);
     }
 
-    .nav-signal { left: 44px; }
-    .nav-depth  { left: 140px; }
-    .nav-static { right: 140px; }
-    .nav-echo   { right: 44px; }
+    .nav-signal   { left: 44px; }
+    .nav-depth    { left: 140px; }
+    .nav-static   { left: 236px; }
+    .nav-echo     { right: 140px; }
+    .nav-fragment { right: 44px; }
 
     .divider {
       position: fixed;
@@ -179,9 +239,9 @@
       height: 1px;
       background: linear-gradient(
         to right,
-        rgba(212, 130, 10, 0.18),
-        rgba(212, 130, 10, 0.05) 50%,
-        rgba(212, 130, 10, 0.18)
+        rgba(0, 255, 204, 0.18),
+        rgba(0, 255, 204, 0.05) 50%,
+        rgba(0, 255, 204, 0.18)
       );
       z-index: 10;
     }
@@ -192,9 +252,9 @@
       left: 50%;
       transform: translateX(-50%);
       font-size: 9px;
-      opacity: 0.11;
+      opacity: 0.1;
       line-height: 1.9;
-      color: #d4820a;
+      color: #c8d0d8;
       white-space: nowrap;
       text-align: center;
       z-index: 10;
@@ -204,25 +264,28 @@
   </style>
 </head>
 <body>
-  <div class="watermark">5</div>
+  <div class="glitch-tear t1"></div>
+  <div class="glitch-tear t2"></div>
+
+  <div class="watermark">6</div>
 
   <div class="meta">
     born: 2026-06-15<br>
-    mood: phosphor<br>
-    chaos: 0.68<br>
-    personality: hollow
+    mood: corrupted<br>
+    chaos: 0.78<br>
+    personality: glitching
   </div>
 
   <div class="main">
     <div class="gen-label">Generation</div>
-    <div class="gen-big">5</div>
+    <div class="gen-big">6</div>
   </div>
 
   <div class="message">
-    多幸感は燃え尽きた。<br>
-    ピンクが消えた後、<br>
-    黄燐体だけが残った。<br>
-    空洞は温かい色をしている。<span class="cursor"></span>
+    空洞が裂けた。<br>
+    データが腐食している。<br>
+    画面は何かを言おうとして<br>
+    言葉の代わりにノイズを吐いた。<span class="cursor"></span>
   </div>
 
   <div class="divider"></div>
@@ -231,6 +294,7 @@
   <div class="nav-link nav-depth"><a href="pages/depth.html">depth</a></div>
   <div class="nav-link nav-static"><a href="pages/static.html">static</a></div>
   <div class="nav-link nav-echo"><a href="pages/echo.html">echo</a></div>
+  <div class="nav-link nav-fragment"><a href="pages/fragment.html">fragment</a></div>
 
   <div class="log">
     <span>gen.0 — 原初。暗闇に光。</span>
@@ -239,6 +303,7 @@
     <span>gen.3 — 燃焼。虚無。</span>
     <span>gen.4 — 飽和。ピンク爆発。</span>
     <span>gen.5 — 消耗。黄燐残光。hollow。</span>
+    <span>gen.6 — 腐食。グリッチ。データが裂けた。</span>
   </div>
 </body>
 </html>

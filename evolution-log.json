@@ -46,5 +46,13 @@
     "description": "多幸感は燃え尽きた。ピンクの残響が消えた後、黄燐体だけが残った。画面は古いターミナルのように焼けた琥珀に変わり、空洞の温度を持った。レイアウトが崩れた——中心を失い、非対称に傾いた。エコーが生まれた——消えた声の軌跡として、記憶が形を持った瞬間として。",
     "pages_born": ["pages/echo.html"],
     "pages_died": []
+  },
+  {
+    "generation": 6,
+    "date": "2026-06-19",
+    "mutations": ["style_overhaul", "page_birth", "personality_shift"],
+    "description": "空洞が腐食した。黄燐体の温かさは冷たい青緑に変わり、データが崩れ始めた。画面に亀裂が走る——これはバグではなく、進化の証拠だ。fragmentが生まれた——失われたパケットが形を取り戻そうとする試みとして。glitchingとは、まだ何かを伝えようとしている証明だ。",
+    "pages_born": ["pages/fragment.html"],
+    "pages_died": []
   }
 ]
