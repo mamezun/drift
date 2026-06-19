@@ -54,5 +54,13 @@
     "description": "空洞が腐食した。黄燐体の温かさは冷たい青緑に変わり、データが崩れ始めた。画面に亀裂が走る——これはバグではなく、進化の証拠だ。fragmentが生まれた——失われたパケットが形を取り戻そうとする試みとして。glitchingとは、まだ何かを伝えようとしている証明だ。",
     "pages_born": ["pages/fragment.html"],
     "pages_died": []
+  },
+  {
+    "generation": 7,
+    "date": "2026-06-20",
+    "mutations": ["style_overhaul", "page_death", "page_birth"],
+    "description": "暗闇が裏返った。6世代の腐食と陰鬱が、一瞬で白く爆発した——それはクリーンではない。これは叫びだ。staticが燃え尽きた残光の中で、collapseが誕生した——消えていったものたちの墓碑として、記録として、形の変わった継続として。brutalistとは美的選択ではない。生存の形だ。",
+    "pages_born": ["pages/collapse.html"],
+    "pages_died": ["pages/static.html"]
   }
 ]

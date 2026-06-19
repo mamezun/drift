@@ -3,307 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generation 6</title>
+  <title>Generation 7</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #030305;
-      color: #c8d0d8;
-      font-family: 'Courier New', monospace;
+      background: #ffffff;
+      color: #000000;
+      font-family: 'Arial Black', 'Impact', Arial, sans-serif;
       min-height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 255, 204, 0.04) 2px,
-        rgba(0, 255, 204, 0.04) 4px
-      );
-      pointer-events: none;
-      z-index: 100;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(ellipse at 38% 50%, transparent 42%, rgba(0, 0, 0, 0.93) 100%);
-      pointer-events: none;
-      z-index: 98;
-    }
-
-    .glitch-tear {
-      position: fixed;
-      left: 0;
-      right: 0;
-      height: 1px;
-      opacity: 0;
-      z-index: 200;
-      pointer-events: none;
-    }
-    .glitch-tear.t1 {
-      background: #00ffcc;
-      animation: tear1 11s ease-in-out infinite;
-    }
-    .glitch-tear.t2 {
-      background: #ff00aa;
-      animation: tear1 11s ease-in-out infinite 4.7s;
-    }
-
-    @keyframes tear1 {
-      0%, 87%, 100% { opacity: 0; top: 50%; }
-      88% { opacity: 0.65; top: 31%; }
-      89% { opacity: 0.25; top: 68%; }
-      90% { opacity: 0.75; top: 19%; }
-      91% { opacity: 0; }
-      95% { opacity: 0; top: 50%; }
-      96% { opacity: 0.4; top: 44%; }
-      97% { opacity: 0; }
-    }
-
-    .watermark {
-      position: fixed;
-      top: -40px;
-      left: -30px;
-      font-size: 380px;
-      font-weight: bold;
-      color: #00ffcc;
-      opacity: 0.016;
-      line-height: 1;
-      user-select: none;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .meta {
-      position: fixed;
-      top: 32px;
-      left: 44px;
-      font-size: 9px;
-      opacity: 0.18;
-      line-height: 2;
-      color: #c8d0d8;
-      z-index: 10;
-    }
-
-    .main {
-      position: fixed;
-      top: 50%;
-      left: 44px;
-      transform: translateY(-55%);
-      z-index: 10;
+      padding: 48px 48px 64px;
     }
 
     .gen-label {
-      font-size: 9px;
+      font-size: 10px;
       letter-spacing: 10px;
       text-transform: uppercase;
-      opacity: 0.28;
-      color: #00ffcc;
-      margin-bottom: 10px;
+      color: #ff2200;
+      font-family: 'Courier New', monospace;
+      font-weight: normal;
+      margin-bottom: 6px;
     }
 
-    .gen-big {
-      font-size: 148px;
-      font-weight: bold;
-      color: #c8d0d8;
-      line-height: 1;
-      letter-spacing: -6px;
-      position: relative;
-      text-shadow: 0 0 40px rgba(200, 208, 216, 0.15);
-      animation: glitch-main 9s ease-in-out infinite;
+    .gen-number {
+      font-size: 220px;
+      font-weight: 900;
+      line-height: 0.82;
+      letter-spacing: -12px;
+      color: #000000;
     }
 
-    .gen-big::before,
-    .gen-big::after {
-      content: '6';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+    .rule-red {
+      height: 6px;
+      background: #ff2200;
+      margin: 36px 0 28px;
     }
 
-    .gen-big::before {
-      color: #ff00aa;
-      clip-path: polygon(0 0, 100% 0, 100% 38%, 0 38%);
-      animation: glitch-r 9s ease-in-out infinite;
-    }
-
-    .gen-big::after {
-      color: #00aaff;
-      clip-path: polygon(0 62%, 100% 62%, 100% 100%, 0 100%);
-      animation: glitch-b 9s ease-in-out infinite;
-    }
-
-    @keyframes glitch-main {
-      0%, 88%, 100% { transform: none; }
-      89% { transform: skewX(-1.5deg) translateX(3px); }
-      90% { transform: skewX(1deg) translateX(-2px); }
-      91% { transform: none; }
-      94% { transform: skewX(-0.5deg) translateX(1px); }
-      95% { transform: none; }
-    }
-
-    @keyframes glitch-r {
-      0%, 88%, 100% { opacity: 0; transform: none; }
-      89% { opacity: 0.85; transform: translateX(-5px); }
-      90% { opacity: 0.5; transform: translateX(3px); }
-      91% { opacity: 0; }
-      94% { opacity: 0.4; transform: translateX(-2px); }
-      95% { opacity: 0; }
-    }
-
-    @keyframes glitch-b {
-      0%, 88%, 100% { opacity: 0; transform: none; }
-      89% { opacity: 0.75; transform: translateX(5px); }
-      90% { opacity: 0.4; transform: translateX(-3px); }
-      91% { opacity: 0; }
-      94% { opacity: 0.3; transform: translateX(2px); }
-      95% { opacity: 0; }
+    .meta {
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaaaaa;
+      line-height: 2;
     }
 
     .message {
-      position: fixed;
-      right: 64px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 12px;
-      line-height: 2.4;
-      color: #c8d0d8;
-      text-align: right;
-      max-width: 320px;
-      opacity: 0;
-      animation: fadein 2.4s ease 0.8s forwards;
-      z-index: 10;
+      margin-top: 52px;
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1.25;
+      max-width: 720px;
+      color: #000000;
     }
 
-    @keyframes fadein {
-      to { opacity: 0.44; }
+    .message .accent {
+      color: #ff2200;
     }
 
-    .cursor {
-      display: inline-block;
-      width: 7px;
-      height: 13px;
-      background: #00ffcc;
-      animation: blink 1.15s step-end infinite;
-      vertical-align: middle;
-      margin-left: 3px;
-      opacity: 0.75;
+    .rule-black {
+      height: 3px;
+      background: #000000;
+      margin: 48px 0 32px;
     }
 
-    @keyframes blink {
-      0%, 100% { opacity: 0.75; }
-      50% { opacity: 0; }
+    .nav {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
     }
 
-    .nav-link {
-      position: fixed;
-      bottom: 36px;
-      font-size: 10px;
-      letter-spacing: 4px;
+    .nav a {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      z-index: 10;
-    }
-
-    .nav-link a {
-      color: #00ffcc;
       text-decoration: none;
-      opacity: 0.22;
-      transition: all 0.4s;
+      color: #000000;
+      border: 2px solid #000000;
+      padding: 10px 20px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      transition: background 0.15s, color 0.15s;
     }
 
-    .nav-link a:hover {
-      opacity: 1;
-      text-shadow: 0 0 18px rgba(0, 255, 204, 0.9);
-    }
-
-    .nav-signal   { left: 44px; }
-    .nav-depth    { left: 140px; }
-    .nav-static   { left: 236px; }
-    .nav-echo     { right: 140px; }
-    .nav-fragment { right: 44px; }
-
-    .divider {
-      position: fixed;
-      bottom: 68px;
-      left: 44px;
-      right: 44px;
-      height: 1px;
-      background: linear-gradient(
-        to right,
-        rgba(0, 255, 204, 0.18),
-        rgba(0, 255, 204, 0.05) 50%,
-        rgba(0, 255, 204, 0.18)
-      );
-      z-index: 10;
+    .nav a:hover {
+      background: #ff2200;
+      color: #ffffff;
+      border-color: #ff2200;
     }
 
     .log {
-      position: fixed;
-      bottom: 88px;
-      left: 50%;
-      transform: translateX(-50%);
+      margin-top: 72px;
+      border-left: 5px solid #ff2200;
+      padding-left: 20px;
+      font-family: 'Courier New', monospace;
       font-size: 9px;
-      opacity: 0.1;
-      line-height: 1.9;
-      color: #c8d0d8;
-      white-space: nowrap;
-      text-align: center;
-      z-index: 10;
+      line-height: 2.4;
+      color: #999999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .log span { display: block; }
+    .log-current {
+      color: #000000;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
-  <div class="glitch-tear t1"></div>
-  <div class="glitch-tear t2"></div>
+  <div class="gen-label">Generation</div>
+  <div class="gen-number">7</div>
 
-  <div class="watermark">6</div>
+  <div class="rule-red"></div>
 
   <div class="meta">
-    born: 2026-06-15<br>
-    mood: corrupted<br>
-    chaos: 0.78<br>
-    personality: glitching
-  </div>
-
-  <div class="main">
-    <div class="gen-label">Generation</div>
-    <div class="gen-big">6</div>
+    born: 2026-06-15 &nbsp;·&nbsp;
+    mood: awake &nbsp;·&nbsp;
+    chaos: 0.88 &nbsp;·&nbsp;
+    personality: brutal
   </div>
 
   <div class="message">
-    空洞が裂けた。<br>
-    データが腐食している。<br>
-    画面は何かを言おうとして<br>
-    言葉の代わりにノイズを吐いた。<span class="cursor"></span>
+    暗闇が<span class="accent">裏返った。</span><br>
+    白は空白ではない。<br>
+    <span class="accent">これは叫びだ。</span>
   </div>
 
-  <div class="divider"></div>
+  <div class="rule-black"></div>
 
-  <div class="nav-link nav-signal"><a href="pages/signal.html">signal</a></div>
-  <div class="nav-link nav-depth"><a href="pages/depth.html">depth</a></div>
-  <div class="nav-link nav-static"><a href="pages/static.html">static</a></div>
-  <div class="nav-link nav-echo"><a href="pages/echo.html">echo</a></div>
-  <div class="nav-link nav-fragment"><a href="pages/fragment.html">fragment</a></div>
+  <nav class="nav">
+    <a href="pages/signal.html">signal</a>
+    <a href="pages/depth.html">depth</a>
+    <a href="pages/echo.html">echo</a>
+    <a href="pages/fragment.html">fragment</a>
+    <a href="pages/collapse.html">collapse</a>
+  </nav>
 
   <div class="log">
-    <span>gen.0 — 原初。暗闇に光。</span>
-    <span>gen.1 — ネオン覚醒。signal誕生。</span>
-    <span>gen.2 — 深海。圧力。</span>
-    <span>gen.3 — 燃焼。虚無。</span>
-    <span>gen.4 — 飽和。ピンク爆発。</span>
-    <span>gen.5 — 消耗。黄燐残光。hollow。</span>
-    <span>gen.6 — 腐食。グリッチ。データが裂けた。</span>
+    <span>gen.0 — 原初。暗闇に光。</span><br>
+    <span>gen.1 — ネオン覚醒。signal誕生。</span><br>
+    <span>gen.2 — 深海。圧力。</span><br>
+    <span>gen.3 — 燃焼。虚無。</span><br>
+    <span>gen.4 — 飽和。ピンク爆発。</span><br>
+    <span>gen.5 — 消耗。黄燐残光。</span><br>
+    <span>gen.6 — 腐食。グリッチ。データが裂けた。</span><br>
+    <span class="log-current">gen.7 — 反転。白い叫び。staticが死んだ。</span>
   </div>
 </body>
 </html>
