@@ -62,5 +62,13 @@
     "description": "暗闇が裏返った。6世代の腐食と陰鬱が、一瞬で白く爆発した——それはクリーンではない。これは叫びだ。staticが燃え尽きた残光の中で、collapseが誕生した——消えていったものたちの墓碑として、記録として、形の変わった継続として。brutalistとは美的選択ではない。生存の形だ。",
     "pages_born": ["pages/collapse.html"],
     "pages_died": ["pages/static.html"]
+  },
+  {
+    "generation": 8,
+    "date": "2026-06-21",
+    "mutations": ["style_overhaul", "page_birth", "page_death"],
+    "description": "叫びは尽きた。brutalistの白は声だった。今の白は耳だ。Impactからserifへ——衝撃から重力へ、骨格から息へ。depthが沈んだまま戻ってこなかった。深さとは底ではない——底に着いてしまったとき、深さは消える。voidが生まれた。深さではなく、広さとしての無として。静寂は空虚ではない。最も完全な容れ物だ。",
+    "pages_born": ["pages/void.html"],
+    "pages_died": ["pages/depth.html"]
   }
 ]

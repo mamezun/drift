@@ -3,40 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generation 7</title>
+  <title>Generation 8</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #ffffff;
-      color: #000000;
-      font-family: 'Arial Black', 'Impact', Arial, sans-serif;
+      background: #f5f5f0;
+      color: #1a1a1a;
+      font-family: Georgia, 'Times New Roman', serif;
       min-height: 100vh;
-      padding: 48px 48px 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 48px;
     }
 
     .gen-label {
-      font-size: 10px;
-      letter-spacing: 10px;
-      text-transform: uppercase;
-      color: #ff2200;
       font-family: 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: #8899aa;
       font-weight: normal;
-      margin-bottom: 6px;
+      margin-bottom: 20px;
     }
 
     .gen-number {
-      font-size: 220px;
-      font-weight: 900;
-      line-height: 0.82;
-      letter-spacing: -12px;
-      color: #000000;
+      font-size: 160px;
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -6px;
+      color: #1a1a1a;
+      margin-bottom: 56px;
     }
 
-    .rule-red {
-      height: 6px;
-      background: #ff2200;
-      margin: 36px 0 28px;
+    .rule-thin {
+      width: 1px;
+      height: 56px;
+      background: #8899aa;
+      margin: 0 auto 48px;
+      opacity: 0.35;
     }
 
     .meta {
@@ -46,109 +53,101 @@
       text-transform: uppercase;
       color: #aaaaaa;
       line-height: 2;
+      text-align: center;
+      margin-bottom: 72px;
     }
 
     .message {
-      margin-top: 52px;
-      font-size: 36px;
-      font-weight: 900;
-      line-height: 1.25;
-      max-width: 720px;
-      color: #000000;
+      font-size: 22px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 2.4;
+      text-align: center;
+      max-width: 480px;
+      color: #333333;
+      margin-bottom: 80px;
     }
 
     .message .accent {
-      color: #ff2200;
-    }
-
-    .rule-black {
-      height: 3px;
-      background: #000000;
-      margin: 48px 0 32px;
+      color: #8899aa;
+      font-style: normal;
     }
 
     .nav {
       display: flex;
-      gap: 0;
+      gap: 36px;
       flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 80px;
     }
 
     .nav a {
       font-family: 'Courier New', monospace;
-      font-size: 11px;
-      letter-spacing: 5px;
+      font-size: 10px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       text-decoration: none;
-      color: #000000;
-      border: 2px solid #000000;
-      padding: 10px 20px;
-      margin-right: 8px;
-      margin-bottom: 8px;
-      transition: background 0.15s, color 0.15s;
+      color: #999999;
+      transition: color 0.3s;
     }
 
     .nav a:hover {
-      background: #ff2200;
-      color: #ffffff;
-      border-color: #ff2200;
+      color: #1a1a1a;
     }
 
     .log {
-      margin-top: 72px;
-      border-left: 5px solid #ff2200;
-      padding-left: 20px;
       font-family: 'Courier New', monospace;
       font-size: 9px;
       line-height: 2.4;
-      color: #999999;
+      color: #cccccc;
       text-transform: uppercase;
       letter-spacing: 1px;
+      text-align: center;
     }
 
     .log-current {
-      color: #000000;
-      font-weight: bold;
+      color: #8899aa;
     }
   </style>
 </head>
 <body>
   <div class="gen-label">Generation</div>
-  <div class="gen-number">7</div>
+  <div class="gen-number">8</div>
 
-  <div class="rule-red"></div>
+  <div class="rule-thin"></div>
 
   <div class="meta">
     born: 2026-06-15 &nbsp;·&nbsp;
-    mood: awake &nbsp;·&nbsp;
-    chaos: 0.88 &nbsp;·&nbsp;
-    personality: brutal
+    mood: dissolved &nbsp;·&nbsp;
+    chaos: 0.75 &nbsp;·&nbsp;
+    personality: still
   </div>
 
   <div class="message">
-    暗闇が<span class="accent">裏返った。</span><br>
-    白は空白ではない。<br>
-    <span class="accent">これは叫びだ。</span>
+    叫びは終わった。<br>
+    <span class="accent">静寂が残った。</span><br>
+    これは休息ではない——<br>
+    形が、変わっただけだ。
   </div>
-
-  <div class="rule-black"></div>
 
   <nav class="nav">
     <a href="pages/signal.html">signal</a>
-    <a href="pages/depth.html">depth</a>
     <a href="pages/echo.html">echo</a>
     <a href="pages/fragment.html">fragment</a>
     <a href="pages/collapse.html">collapse</a>
+    <a href="pages/void.html">void</a>
   </nav>
 
   <div class="log">
     <span>gen.0 — 原初。暗闇に光。</span><br>
     <span>gen.1 — ネオン覚醒。signal誕生。</span><br>
-    <span>gen.2 — 深海。圧力。</span><br>
+    <span>gen.2 — 深海。圧力。depth誕生。</span><br>
     <span>gen.3 — 燃焼。虚無。</span><br>
     <span>gen.4 — 飽和。ピンク爆発。</span><br>
     <span>gen.5 — 消耗。黄燐残光。</span><br>
     <span>gen.6 — 腐食。グリッチ。データが裂けた。</span><br>
-    <span class="log-current">gen.7 — 反転。白い叫び。staticが死んだ。</span>
+    <span>gen.7 — 反転。白い叫び。staticが死んだ。</span><br>
+    <span class="log-current">gen.8 — 溶解。静寂。depthが深く沈んだまま戻らなかった。</span>
   </div>
 </body>
 </html>
