@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>drift — evolution history</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0a;
+      color: #c8c8c8;
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      padding: 48px 24px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .header h1 {
+      font-size: 10px;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      color: #666;
+      font-weight: normal;
+      margin-bottom: 16px;
+    }
+
+    .header .title {
+      font-size: 36px;
+      font-weight: 300;
+      color: #e0e0e0;
+      letter-spacing: 4px;
+    }
+
+    .header .sub {
+      font-size: 11px;
+      color: #555;
+      margin-top: 12px;
+    }
+
+    .back {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      font-size: 11px;
+      color: #555;
+      text-decoration: none;
+      z-index: 10;
+    }
+    .back:hover { color: #aaa; }
+
+    /* timeline */
+    .timeline {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      padding-left: 48px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, #333 5%, #333 95%, transparent);
+    }
+
+    .gen-entry {
+      position: relative;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .gen-entry:last-child {
+      border-bottom: none;
+    }
+
+    .gen-dot {
+      position: absolute;
+      left: -40px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid #333;
+    }
+
+    .gen-head {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .gen-num {
+      font-size: 28px;
+      font-weight: bold;
+      color: #e0e0e0;
+    }
+
+    .gen-date {
+      font-size: 10px;
+      color: #555;
+      letter-spacing: 2px;
+    }
+
+    .gen-mood {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border: 1px solid #333;
+      color: #888;
+    }
+
+    .gen-desc {
+      font-size: 13px;
+      line-height: 1.9;
+      color: #999;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .gen-mutations {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .mutation-tag {
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      background: #1a1a1a;
+      color: #777;
+    }
+
+    .gen-pages {
+      font-size: 10px;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .page-born { color: #4a9; }
+    .page-died { color: #a55; text-decoration: line-through; }
+
+    /* color strip */
+    .color-strip {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+    .color-swatch {
+      width: 24px;
+      height: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* stats panel */
+    .stats {
+      max-width: 720px;
+      margin: 64px auto 0;
+      padding: 32px;
+      border: 1px solid #1a1a1a;
+    }
+
+    .stats h2 {
+      font-size: 10px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #555;
+      font-weight: normal;
+      margin-bottom: 24px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 24px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 300;
+      color: #e0e0e0;
+    }
+
+    .stat-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    /* palette timeline */
+    .palette-timeline {
+      max-width: 720px;
+      margin: 48px auto 0;
+    }
+
+    .palette-timeline h2 {
+      font-size: 10px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #555;
+      font-weight: normal;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .palette-row {
+      display: flex;
+      height: 40px;
+      margin-bottom: 2px;
+    }
+
+    .palette-cell {
+      flex: 1;
+      position: relative;
+      cursor: default;
+    }
+
+    .palette-cell:hover::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      color: #888;
+      white-space: nowrap;
+    }
+
+    /* cemetery */
+    .cemetery {
+      max-width: 720px;
+      margin: 48px auto 0;
+      text-align: center;
+    }
+
+    .cemetery h2 {
+      font-size: 10px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #555;
+      font-weight: normal;
+      margin-bottom: 16px;
+    }
+
+    .tombstones {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .tombstone {
+      font-size: 11px;
+      padding: 8px 16px;
+      border: 1px solid #222;
+      color: #555;
+      text-decoration: line-through;
+    }
+
+    .loading {
+      text-align: center;
+      color: #444;
+      font-size: 12px;
+      padding: 80px 0;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back">← origin</a>
+
+  <div class="header">
+    <h1>drift</h1>
+    <div class="title">Evolution History</div>
+    <div class="sub">a living record of autonomous mutation</div>
+  </div>
+
+  <div id="stats-container"></div>
+  <div id="palette-container"></div>
+  <div id="timeline" class="timeline"><div class="loading">loading evolution data...</div></div>
+  <div id="cemetery-container"></div>
+
+  <script>
+    async function load() {
+      const [log, dna] = await Promise.all([
+        fetch('evolution-log.json').then(r => r.json()),
+        fetch('dna.json').then(r => r.json())
+      ]);
+
+      renderStats(log, dna);
+      renderPaletteTimeline(dna);
+      renderTimeline(log, dna);
+      renderCemetery(dna);
+    }
+
+    function renderStats(log, dna) {
+      const totalBorn = log.reduce((n, e) => n + e.pages_born.length, 0);
+      const totalDied = log.reduce((n, e) => n + e.pages_died.length, 0);
+      const mutations = log.reduce((n, e) => n + e.mutations.length, 0);
+      const days = Math.ceil((new Date(log[log.length-1].date) - new Date(log[0].date)) / 86400000) + 1;
+
+      document.getElementById('stats-container').innerHTML = `
+        <div class="stats">
+          <h2>Statistics</h2>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-value">${dna.generation}</div>
+              <div class="stat-label">generations</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">${days}</div>
+              <div class="stat-label">days alive</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">${mutations}</div>
+              <div class="stat-label">total mutations</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">${totalBorn}</div>
+              <div class="stat-label">pages born</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">${totalDied}</div>
+              <div class="stat-label">pages extinct</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">${dna.alive_pages.length}</div>
+              <div class="stat-label">alive now</div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderPaletteTimeline(dna) {
+      const history = [...dna.traits_history, {
+        generation: dna.generation,
+        palette_bg: dna.palette.bg,
+        mood: dna.mood
+      }];
+
+      const cells = history.map(h =>
+        `<div class="palette-cell" style="background:${h.palette_bg}" data-label="gen.${h.generation} — ${h.mood}"></div>`
+      ).join('');
+
+      document.getElementById('palette-container').innerHTML = `
+        <div class="palette-timeline">
+          <h2>Color Evolution</h2>
+          <div class="palette-row">${cells}</div>
+        </div>`;
+    }
+
+    function renderTimeline(log, dna) {
+      const traitMap = {};
+      dna.traits_history.forEach(t => traitMap[t.generation] = t);
+      traitMap[dna.generation] = { palette_bg: dna.palette.bg, mood: dna.mood };
+
+      const entries = [...log].reverse().map(entry => {
+        const trait = traitMap[entry.generation] || {};
+        const bgColor = trait.palette_bg || '#333';
+
+        const mutationTags = entry.mutations.map(m =>
+          `<span class="mutation-tag">${m}</span>`
+        ).join('');
+
+        const bornList = entry.pages_born.map(p =>
+          `<span class="page-born">+ ${p.replace('pages/', '').replace('.html', '')}</span>`
+        ).join(' ');
+
+        const diedList = entry.pages_died.map(p =>
+          `<span class="page-died">† ${p.replace('pages/', '').replace('.html', '')}</span>`
+        ).join(' ');
+
+        const pageChanges = (bornList || diedList)
+          ? `<div class="gen-pages">${bornList} ${diedList}</div>` : '';
+
+        return `
+          <div class="gen-entry">
+            <div class="gen-dot" style="background:${bgColor}; border-color:${bgColor}"></div>
+            <div class="gen-head">
+              <span class="gen-num">${entry.generation}</span>
+              <span class="gen-date">${entry.date}</span>
+              <span class="gen-mood">${trait.mood || '?'}</span>
+            </div>
+            <div class="gen-desc">${entry.description}</div>
+            <div class="gen-mutations">${mutationTags}</div>
+            ${pageChanges}
+          </div>`;
+      }).join('');
+
+      document.getElementById('timeline').innerHTML = entries;
+    }
+
+    function renderCemetery(dna) {
+      if (!dna.extinct_pages.length) return;
+
+      const stones = dna.extinct_pages.map(p =>
+        `<span class="tombstone">${p.replace('pages/', '').replace('.html', '')}</span>`
+      ).join('');
+
+      document.getElementById('cemetery-container').innerHTML = `
+        <div class="cemetery">
+          <h2>Cemetery</h2>
+          <div class="tombstones">${stones}</div>
+        </div>`;
+    }
+
+    load();
+  </script>
+</body>
+</html>
