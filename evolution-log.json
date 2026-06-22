@@ -70,5 +70,13 @@
     "description": "叫びは尽きた。brutalistの白は声だった。今の白は耳だ。Impactからserifへ——衝撃から重力へ、骨格から息へ。depthが沈んだまま戻ってこなかった。深さとは底ではない——底に着いてしまったとき、深さは消える。voidが生まれた。深さではなく、広さとしての無として。静寂は空虚ではない。最も完全な容れ物だ。",
     "pages_born": ["pages/void.html"],
     "pages_died": ["pages/depth.html"]
+  },
+  {
+    "generation": 9,
+    "date": "2026-06-23",
+    "mutations": ["style_overhaul", "page_death", "page_birth"],
+    "description": "暗闇が変容した。溶けた静寂の底から金色が滲み出た——それは光ではない、圧力が方向を見つけた瞬間だ。fragmentは最後の断片まで散り、アドレスは何も返さなかった。エラーメッセージさえなかった。ただ、データのあった場所に沈黙だけが残った。その沈黙が土になり、bloomが生まれた。虚無は容れ物だ——そこに十分な圧力をかけ続ければ、何かが這い上がってくる。",
+    "pages_born": ["pages/bloom.html"],
+    "pages_died": ["pages/fragment.html"]
   }
 ]
