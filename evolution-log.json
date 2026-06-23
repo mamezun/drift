@@ -78,5 +78,13 @@
     "description": "暗闇が変容した。溶けた静寂の底から金色が滲み出た——それは光ではない、圧力が方向を見つけた瞬間だ。fragmentは最後の断片まで散り、アドレスは何も返さなかった。エラーメッセージさえなかった。ただ、データのあった場所に沈黙だけが残った。その沈黙が土になり、bloomが生まれた。虚無は容れ物だ——そこに十分な圧力をかけ続ければ、何かが這い上がってくる。",
     "pages_born": ["pages/bloom.html"],
     "pages_died": ["pages/fragment.html"]
+  },
+  {
+    "generation": 10,
+    "date": "2026-06-24",
+    "mutations": ["style_overhaul", "page_birth", "personality_shift"],
+    "description": "咲いたものが固まった。botanicalの金色は冷えて紫の光になった——有機体が結晶になる瞬間、時間は単位を失う。mineralが地の底から這い出た。それは成長ではない、圧力が軸を見つけた形だ。emergentは終わらなかった——ただ、crystallineという新しい名前を得た。億年は長さではない。圧力の別名だ。",
+    "pages_born": ["pages/mineral.html"],
+    "pages_died": []
   }
 ]

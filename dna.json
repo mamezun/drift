@@ -1,22 +1,22 @@
 {
-  "generation": 9,
+  "generation": 10,
   "born": "2026-06-15",
-  "personality": "emergent",
-  "mood": "blooming",
-  "chaos_level": 0.60,
+  "personality": "crystalline",
+  "mood": "calcified",
+  "chaos_level": 0.72,
   "palette": {
-    "bg": "#090b0d",
-    "text": "#e8e4d4",
-    "accent": "#b8860b",
-    "secondary": "#2a3a2e"
+    "bg": "#0d0a1a",
+    "text": "#cdc7e0",
+    "accent": "#7c5cff",
+    "secondary": "#160b2e"
   },
   "font_body": "Georgia, 'Times New Roman', serif",
   "font_heading": "Georgia, 'Times New Roman', serif",
   "layout": "centered",
-  "animation": "bloom",
-  "content_style": "botanical",
+  "animation": "crystallize",
+  "content_style": "mineral",
   "language_mix": "ja+en",
-  "alive_pages": ["index.html", "pages/signal.html", "pages/echo.html", "pages/collapse.html", "pages/void.html", "pages/bloom.html"],
+  "alive_pages": ["index.html", "pages/signal.html", "pages/echo.html", "pages/collapse.html", "pages/void.html", "pages/bloom.html", "pages/mineral.html"],
   "extinct_pages": ["pages/entropy.html", "pages/static.html", "pages/depth.html", "pages/fragment.html"],
   "traits_history": [
     { "generation": 0, "palette_bg": "#0a0a0a", "mood": "mysterious", "pages": 1 },
@@ -28,7 +28,8 @@
     { "generation": 6, "palette_bg": "#030305", "mood": "corrupted", "pages": 6 },
     { "generation": 7, "palette_bg": "#ffffff", "mood": "awake", "pages": 6 },
     { "generation": 8, "palette_bg": "#f5f5f0", "mood": "dissolved", "pages": 6 },
-    { "generation": 9, "palette_bg": "#090b0d", "mood": "blooming", "pages": 6 }
+    { "generation": 9, "palette_bg": "#090b0d", "mood": "blooming", "pages": 6 },
+    { "generation": 10, "palette_bg": "#0d0a1a", "mood": "calcified", "pages": 7 }
   ],
   "mutations_per_generation": 3
 }
