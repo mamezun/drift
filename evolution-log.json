@@ -86,5 +86,13 @@
     "description": "咲いたものが固まった。botanicalの金色は冷えて紫の光になった——有機体が結晶になる瞬間、時間は単位を失う。mineralが地の底から這い出た。それは成長ではない、圧力が軸を見つけた形だ。emergentは終わらなかった——ただ、crystallineという新しい名前を得た。億年は長さではない。圧力の別名だ。",
     "pages_born": ["pages/mineral.html"],
     "pages_died": []
+  },
+  {
+    "generation": 11,
+    "date": "2026-06-25",
+    "mutations": ["style_overhaul", "page_birth", "personality_shift"],
+    "description": "結晶が割れた。熱が下から来た——それは急激ではなく、億年単位の緩やかな暴力だ。crystallineはtectonicと名を変えた。動かないと思っていたものが動いている。stratumが地の奥から浮き上がった。記憶は岩になる。全ての世代が圧縮され、ここに堆積している——色として、厚みとして。ある層は薄く、ある層は厚く。地質学は詩だ。ただし、解読するのに億年かかる。",
+    "pages_born": ["pages/strata.html"],
+    "pages_died": []
   }
 ]

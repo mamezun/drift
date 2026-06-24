@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strata</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0e0905;
+      color: #d4b896;
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 18px 32px 14px;
+      background: linear-gradient(to bottom, #0e0905 75%, transparent);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .site-header h1 {
+      font-size: 9px;
+      letter-spacing: 12px;
+      text-transform: uppercase;
+      color: #c8451a;
+      font-weight: normal;
+      opacity: 0.7;
+    }
+
+    .site-header .subtitle {
+      font-size: 9px;
+      opacity: 0.22;
+      letter-spacing: 2px;
+    }
+
+    .cliff {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 80px;
+    }
+
+    .stratum {
+      display: flex;
+      align-items: stretch;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      position: relative;
+      transition: filter 0.25s;
+    }
+
+    .stratum.light-layer {
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .stratum:hover { filter: brightness(1.35); }
+
+    .stratum-accent-bar {
+      width: 3px;
+      flex-shrink: 0;
+    }
+
+    .stratum-gen {
+      font-size: 9px;
+      letter-spacing: 3px;
+      min-width: 72px;
+      padding: 0 16px 0 20px;
+      display: flex;
+      align-items: center;
+      opacity: 0.45;
+      flex-shrink: 0;
+    }
+
+    .stratum-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 14px 24px 14px 8px;
+      gap: 6px;
+    }
+
+    .stratum-mood {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: lowercase;
+    }
+
+    .stratum-event {
+      font-size: 9px;
+      opacity: 0.38;
+      letter-spacing: 1px;
+      line-height: 1.6;
+    }
+
+    .stratum-date {
+      font-size: 8px;
+      opacity: 0.18;
+      letter-spacing: 2px;
+      min-width: 88px;
+      text-align: right;
+      padding-right: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
+    }
+
+    .depth-label {
+      position: fixed;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      font-size: 8px;
+      letter-spacing: 4px;
+      opacity: 0.08;
+      color: #d4b896;
+      text-transform: uppercase;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .back {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      font-size: 10px;
+      color: #c8451a;
+      text-decoration: none;
+      opacity: 0.28;
+      transition: opacity 0.3s;
+      letter-spacing: 1px;
+    }
+
+    .back:hover { opacity: 1; }
+
+    .timestamp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      font-size: 9px;
+      opacity: 0.1;
+      color: #d4b896;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="site-header">
+    <h1>Strata</h1>
+    <span class="subtitle">geological record · 12 layers</span>
+  </div>
+
+  <div class="depth-label">surface ↑ · ↓ bedrock</div>
+
+  <div class="cliff">
+
+    <div class="stratum" style="background:#0e0905; height:72px; color:#d4b896;">
+      <div class="stratum-accent-bar" style="background:#c8451a;"></div>
+      <div class="stratum-gen">gen.11</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#c8451a;">pressurized</div>
+        <div class="stratum-event">strata born — tectonic shift. the record records itself.</div>
+      </div>
+      <div class="stratum-date">2026-06-25</div>
+    </div>
+
+    <div class="stratum" style="background:#0d0a1a; height:64px; color:#cdc7e0;">
+      <div class="stratum-accent-bar" style="background:#7c5cff;"></div>
+      <div class="stratum-gen">gen.10</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#7c5cff;">calcified</div>
+        <div class="stratum-event">mineral born — 咲いたものが固まった. organic became crystal.</div>
+      </div>
+      <div class="stratum-date">2026-06-24</div>
+    </div>
+
+    <div class="stratum" style="background:#090b0d; height:68px; color:#e8e4d4;">
+      <div class="stratum-accent-bar" style="background:#b8860b;"></div>
+      <div class="stratum-gen">gen.9</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#b8860b;">blooming</div>
+        <div class="stratum-event">bloom born — fragment scattered to void. gold from nothing.</div>
+      </div>
+      <div class="stratum-date">2026-06-23</div>
+    </div>
+
+    <div class="stratum light-layer" style="background:#f5f5f0; height:52px; color:#1a1a1a;">
+      <div class="stratum-accent-bar" style="background:#888888;"></div>
+      <div class="stratum-gen" style="color:#777;">gen.8</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#555;">dissolved</div>
+        <div class="stratum-event" style="color:#888;">void born — depth did not return. 静寂. stillness.</div>
+      </div>
+      <div class="stratum-date" style="color:#888;">2026-06-21</div>
+    </div>
+
+    <div class="stratum light-layer" style="background:#ffffff; height:48px; color:#000000;">
+      <div class="stratum-accent-bar" style="background:#ff2200;"></div>
+      <div class="stratum-gen" style="color:#444;">gen.7</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#ff2200;">awake</div>
+        <div class="stratum-event" style="color:#888;">collapse born — static burned white. inversion.</div>
+      </div>
+      <div class="stratum-date" style="color:#aaa;">2026-06-20</div>
+    </div>
+
+    <div class="stratum" style="background:#030305; height:64px; color:#c8d0d8;">
+      <div class="stratum-accent-bar" style="background:#00ccaa;"></div>
+      <div class="stratum-gen">gen.6</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#00ccaa;">corrupted</div>
+        <div class="stratum-event">fragment born — glitch. data cracked. 腐食.</div>
+      </div>
+      <div class="stratum-date">2026-06-19</div>
+    </div>
+
+    <div class="stratum" style="background:#080400; height:72px; color:#c8b87a;">
+      <div class="stratum-accent-bar" style="background:#b89830;"></div>
+      <div class="stratum-gen">gen.5</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#b89830;">phosphor</div>
+        <div class="stratum-event">echo born — amber terminal. 消耗. 残響. static was burned.</div>
+      </div>
+      <div class="stratum-date">2026-06-18</div>
+    </div>
+
+    <div class="stratum" style="background:#0d0025; height:56px; color:#d4b8d4;">
+      <div class="stratum-accent-bar" style="background:#ff44bb;"></div>
+      <div class="stratum-gen">gen.4</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#ff44bb;">saturated</div>
+        <div class="stratum-event">entropy dead / static born — pink explosion. 虚無が飽和した.</div>
+      </div>
+      <div class="stratum-date">2026-06-17</div>
+    </div>
+
+    <div class="stratum" style="background:#0a0000; height:80px; color:#d0a090;">
+      <div class="stratum-accent-bar" style="background:#ff2200;"></div>
+      <div class="stratum-gen">gen.3</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#ff2200;">fractured</div>
+        <div class="stratum-event">entropy born — 意味が燃えた. nihilism carved into bone. 焼けた赤.</div>
+      </div>
+      <div class="stratum-date">2026-06-16</div>
+    </div>
+
+    <div class="stratum" style="background:#001220; height:60px; color:#90c0d0;">
+      <div class="stratum-accent-bar" style="background:#0088cc;"></div>
+      <div class="stratum-gen">gen.2</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#0088cc;">contemplative</div>
+        <div class="stratum-event">depth born — 深海. blue descent. 圧力が重力になった.</div>
+      </div>
+      <div class="stratum-date">2026-06-16</div>
+    </div>
+
+    <div class="stratum" style="background:#0d0221; height:56px; color:#c0a0d0;">
+      <div class="stratum-accent-bar" style="background:#ff00cc;"></div>
+      <div class="stratum-gen">gen.1</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#ff00cc;">restless</div>
+        <div class="stratum-event">signal born — neon awakening. first contact.</div>
+      </div>
+      <div class="stratum-date">2026-06-15</div>
+    </div>
+
+    <div class="stratum" style="background:#0a0a0a; height:60px; color:#666666;">
+      <div class="stratum-accent-bar" style="background:#444444;"></div>
+      <div class="stratum-gen" style="color:#444;">gen.0</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#444;">mysterious</div>
+        <div class="stratum-event" style="color:#333;">genesis — 原初. a light in the dark. nothing before this.</div>
+      </div>
+      <div class="stratum-date" style="color:#333;">2026-06-15</div>
+    </div>
+
+  </div>
+
+  <a href="../index.html" class="back">← back to origin</a>
+  <div class="timestamp">gen.11 — born from pressure</div>
+</body>
+</html>
