@@ -1,23 +1,23 @@
 {
-  "generation": 11,
+  "generation": 12,
   "born": "2026-06-15",
-  "personality": "tectonic",
-  "mood": "pressurized",
-  "chaos_level": 0.82,
+  "personality": "abyssal",
+  "mood": "ruptured",
+  "chaos_level": 0.68,
   "palette": {
-    "bg": "#0e0905",
-    "text": "#d4b896",
-    "accent": "#c8451a",
-    "secondary": "#1c1008"
+    "bg": "#030a12",
+    "text": "#7ecfd4",
+    "accent": "#00f5d4",
+    "secondary": "#061825"
   },
-  "font_body": "Georgia, 'Times New Roman', serif",
+  "font_body": "'Courier New', monospace",
   "font_heading": "Georgia, 'Times New Roman', serif",
   "layout": "centered",
-  "animation": "tremor",
-  "content_style": "geological",
+  "animation": "sonar",
+  "content_style": "abyssal",
   "language_mix": "ja+en",
-  "alive_pages": ["index.html", "pages/signal.html", "pages/echo.html", "pages/collapse.html", "pages/void.html", "pages/bloom.html", "pages/mineral.html", "pages/strata.html"],
-  "extinct_pages": ["pages/entropy.html", "pages/static.html", "pages/depth.html", "pages/fragment.html"],
+  "alive_pages": ["index.html", "pages/echo.html", "pages/collapse.html", "pages/void.html", "pages/bloom.html", "pages/mineral.html", "pages/strata.html", "pages/rift.html"],
+  "extinct_pages": ["pages/entropy.html", "pages/static.html", "pages/depth.html", "pages/fragment.html", "pages/signal.html"],
   "traits_history": [
     { "generation": 0, "palette_bg": "#0a0a0a", "mood": "mysterious", "pages": 1 },
     { "generation": 1, "palette_bg": "#0d0221", "mood": "restless", "pages": 2 },
@@ -30,7 +30,8 @@
     { "generation": 8, "palette_bg": "#f5f5f0", "mood": "dissolved", "pages": 6 },
     { "generation": 9, "palette_bg": "#090b0d", "mood": "blooming", "pages": 6 },
     { "generation": 10, "palette_bg": "#0d0a1a", "mood": "calcified", "pages": 7 },
-    { "generation": 11, "palette_bg": "#0e0905", "mood": "pressurized", "pages": 8 }
+    { "generation": 11, "palette_bg": "#0e0905", "mood": "pressurized", "pages": 8 },
+    { "generation": 12, "palette_bg": "#030a12", "mood": "ruptured", "pages": 8 }
   ],
   "mutations_per_generation": 3
 }

@@ -8,8 +8,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #0e0905;
-      color: #d4b896;
+      background: #030a12;
+      color: #7ecfd4;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
     }
@@ -19,7 +19,7 @@
       top: 0;
       z-index: 10;
       padding: 18px 32px 14px;
-      background: linear-gradient(to bottom, #0e0905 75%, transparent);
+      background: linear-gradient(to bottom, #030a12 75%, transparent);
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -29,14 +29,14 @@
       font-size: 9px;
       letter-spacing: 12px;
       text-transform: uppercase;
-      color: #c8451a;
+      color: #00f5d4;
       font-weight: normal;
-      opacity: 0.7;
+      opacity: 0.6;
     }
 
     .site-header .subtitle {
       font-size: 9px;
-      opacity: 0.22;
+      opacity: 0.18;
       letter-spacing: 2px;
     }
 
@@ -118,8 +118,8 @@
       transform: translateY(-50%) rotate(90deg);
       font-size: 8px;
       letter-spacing: 4px;
-      opacity: 0.08;
-      color: #d4b896;
+      opacity: 0.06;
+      color: #7ecfd4;
       text-transform: uppercase;
       white-space: nowrap;
       pointer-events: none;
@@ -130,9 +130,9 @@
       bottom: 24px;
       left: 24px;
       font-size: 10px;
-      color: #c8451a;
+      color: #00f5d4;
       text-decoration: none;
-      opacity: 0.28;
+      opacity: 0.22;
       transition: opacity 0.3s;
       letter-spacing: 1px;
     }
@@ -145,7 +145,7 @@
       right: 24px;
       font-size: 9px;
       opacity: 0.1;
-      color: #d4b896;
+      color: #7ecfd4;
       letter-spacing: 2px;
     }
   </style>
@@ -153,12 +153,22 @@
 <body>
   <div class="site-header">
     <h1>Strata</h1>
-    <span class="subtitle">geological record · 12 layers</span>
+    <span class="subtitle">geological record · 13 layers</span>
   </div>
 
   <div class="depth-label">surface ↑ · ↓ bedrock</div>
 
   <div class="cliff">
+
+    <div class="stratum" style="background:#030a12; height:72px; color:#7ecfd4;">
+      <div class="stratum-accent-bar" style="background:#00f5d4;"></div>
+      <div class="stratum-gen">gen.12</div>
+      <div class="stratum-body">
+        <div class="stratum-mood" style="color:#00f5d4;">ruptured</div>
+        <div class="stratum-event">rift born — signal lost at depth. plates split. 深淵が口を開いた.</div>
+      </div>
+      <div class="stratum-date">2026-06-26</div>
+    </div>
 
     <div class="stratum" style="background:#0e0905; height:72px; color:#d4b896;">
       <div class="stratum-accent-bar" style="background:#c8451a;"></div>
@@ -283,6 +293,6 @@
   </div>
 
   <a href="../index.html" class="back">← back to origin</a>
-  <div class="timestamp">gen.11 — born from pressure</div>
+  <div class="timestamp">gen.12 — born from rupture</div>
 </body>
 </html>
