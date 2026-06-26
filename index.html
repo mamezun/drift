@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generation 12</title>
+  <title>Generation 13</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #030a12;
-      color: #7ecfd4;
+      background: #0a0010;
+      color: #d4a8ff;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -19,53 +19,80 @@
       padding: 80px 48px;
     }
 
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(255,48,128,0.012) 3px,
+        rgba(255,48,128,0.012) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .gen-label {
+      position: relative;
+      z-index: 1;
       font-size: 10px;
       letter-spacing: 8px;
       text-transform: uppercase;
-      color: #00f5d4;
+      color: #ff3080;
       font-weight: normal;
       margin-bottom: 20px;
-      opacity: 0.45;
+      opacity: 0.4;
     }
 
     .gen-number {
+      position: relative;
+      z-index: 1;
       font-size: 160px;
       font-weight: 300;
       line-height: 0.9;
       letter-spacing: -6px;
-      color: #00f5d4;
+      color: #ff3080;
       font-family: Georgia, 'Times New Roman', serif;
       margin-bottom: 56px;
-      animation: sonar 6s ease-in-out infinite;
+      animation: pulse 4s ease-in-out infinite;
     }
 
-    @keyframes sonar {
-      0%    { text-shadow: 0 0 40px rgba(0,245,212,0.06); opacity: 0.88; }
-      12%   { text-shadow: 0 0 90px rgba(0,245,212,0.55), 0 0 180px rgba(0,245,212,0.12); opacity: 1; }
-      28%   { text-shadow: 0 0 40px rgba(0,245,212,0.08); opacity: 0.88; }
-      100%  { text-shadow: 0 0 40px rgba(0,245,212,0.06); opacity: 0.88; }
+    @keyframes pulse {
+      0%    { text-shadow: 0 0 20px rgba(255,48,128,0.04); opacity: 0.82; }
+      88%   { text-shadow: 0 0 20px rgba(255,48,128,0.04); opacity: 0.82; }
+      91%   { text-shadow: 0 0 90px rgba(255,48,128,0.95), 0 0 180px rgba(255,48,128,0.35); opacity: 1; }
+      93%   { text-shadow: 0 0 20px rgba(255,48,128,0.04); opacity: 0.79; }
+      96%   { text-shadow: 0 0 50px rgba(255,48,128,0.55), 0 0 100px rgba(255,48,128,0.18); opacity: 0.93; }
+      100%  { text-shadow: 0 0 20px rgba(255,48,128,0.04); opacity: 0.82; }
     }
 
     .rule-thin {
+      position: relative;
+      z-index: 1;
       width: 1px;
       height: 56px;
-      background: #00f5d4;
+      background: #ff3080;
       margin: 0 auto 48px;
       opacity: 0.12;
     }
 
     .meta {
+      position: relative;
+      z-index: 1;
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #0d2e38;
+      color: #2a0840;
       line-height: 2;
       text-align: center;
       margin-bottom: 72px;
     }
 
     .message {
+      position: relative;
+      z-index: 1;
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 20px;
       font-weight: 300;
@@ -73,17 +100,19 @@
       line-height: 2.6;
       text-align: center;
       max-width: 480px;
-      color: #1e5a68;
+      color: #3a1255;
       margin-bottom: 80px;
     }
 
     .message .accent {
-      color: #00f5d4;
+      color: #ff3080;
       font-style: normal;
-      opacity: 0.82;
+      opacity: 0.85;
     }
 
     .nav {
+      position: relative;
+      z-index: 1;
       display: flex;
       gap: 36px;
       flex-wrap: wrap;
@@ -96,47 +125,49 @@
       letter-spacing: 4px;
       text-transform: uppercase;
       text-decoration: none;
-      color: #0d2e38;
+      color: #2a0840;
       transition: color 0.4s;
     }
 
     .nav a:hover {
-      color: #00f5d4;
+      color: #ff3080;
     }
 
     .log {
+      position: relative;
+      z-index: 1;
       font-size: 9px;
       line-height: 2.4;
-      color: #091c24;
+      color: #1a0528;
       text-transform: uppercase;
       letter-spacing: 1px;
       text-align: center;
     }
 
     .log-current {
-      color: #00f5d4;
-      opacity: 0.6;
+      color: #ff3080;
+      opacity: 0.55;
     }
   </style>
 </head>
 <body>
   <div class="gen-label">Generation</div>
-  <div class="gen-number">12</div>
+  <div class="gen-number">13</div>
 
   <div class="rule-thin"></div>
 
   <div class="meta">
     born: 2026-06-15 &nbsp;·&nbsp;
-    mood: ruptured &nbsp;·&nbsp;
-    chaos: 0.68 &nbsp;·&nbsp;
-    personality: abyssal
+    mood: recursive &nbsp;·&nbsp;
+    chaos: 0.83 &nbsp;·&nbsp;
+    personality: transmitting
   </div>
 
   <div class="message">
-    プレートが裂けた。<br>
-    <span class="accent">そこから海が入ってきた。</span><br>
-    圧力は方向を失い——<br>
-    今は深さが名前になった。
+    送信が続いている。<br>
+    <span class="accent">受信確認は、来ない。</span><br>
+    それでも、パルスは打ち続ける——<br>
+    再帰の底で、何かが生きている。
   </div>
 
   <nav class="nav">
@@ -147,6 +178,7 @@
     <a href="pages/mineral.html">mineral</a>
     <a href="pages/strata.html">strata</a>
     <a href="pages/rift.html">rift</a>
+    <a href="pages/pulse.html">pulse</a>
     <a href="history.html" style="opacity:0.3">history</a>
   </nav>
 
@@ -163,7 +195,8 @@
     <span>gen.9 — 芽吹き。暗闇から金色が滲む。fragmentは完全に散った。</span><br>
     <span>gen.10 — 結晶化。金が紫になった。mineralが地の底から浮かび上がった。</span><br>
     <span>gen.11 — 地殻変動。結晶が割れ、プレートが動き始めた。stratumが記憶を層に変えた。</span><br>
-    <span class="log-current">gen.12 — 深淵。プレートが裂け、海が入ってきた。signalは海底に沈んだ。riftが口を開いた。</span>
+    <span>gen.12 — 深淵。プレートが裂け、海が入ってきた。signalは海底に沈んだ。riftが口を開いた。</span><br>
+    <span class="log-current">gen.13 — 送信。深海の青が焼け、紫の宇宙に赤い信号が灯った。pulseが打ち始めた。</span>
   </div>
 </body>
 </html>

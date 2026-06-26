@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pulse</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0010;
+      color: #d4a8ff;
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 48px;
+      pointer-events: none;
+    }
+
+    .pulse-title {
+      font-size: 9px;
+      letter-spacing: 14px;
+      text-transform: uppercase;
+      color: #ff3080;
+      opacity: 0.3;
+      margin-bottom: 48px;
+    }
+
+    .beat-counter {
+      font-size: 9px;
+      letter-spacing: 6px;
+      color: #ff3080;
+      opacity: 0.4;
+      margin-bottom: 48px;
+    }
+
+    .pulse-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 3.2;
+      text-align: center;
+      max-width: 380px;
+      color: #2a0840;
+    }
+
+    .pulse-text .lit {
+      color: #d4a8ff;
+      font-style: normal;
+    }
+
+    .pulse-text .signal {
+      color: #ff3080;
+      font-style: normal;
+      font-size: 10px;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 3px;
+      opacity: 0.6;
+    }
+
+    .back {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      font-size: 10px;
+      color: #ff3080;
+      text-decoration: none;
+      opacity: 0.2;
+      transition: opacity 0.3s;
+      letter-spacing: 1px;
+      z-index: 2;
+    }
+
+    .back:hover { opacity: 0.7; }
+
+    .stamp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      font-size: 9px;
+      opacity: 0.1;
+      color: #ff3080;
+      letter-spacing: 2px;
+      z-index: 2;
+    }
+
+    .status {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: #ff3080;
+      opacity: 0.18;
+      z-index: 2;
+    }
+
+    .tx-time {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: #ff3080;
+      opacity: 0.18;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <div class="content">
+    <div class="pulse-title">Pulse</div>
+    <div class="beat-counter" id="beatCounter">BEAT: 0000</div>
+    <div class="pulse-text">
+      <span class="signal" id="txLine">TX: 00:00 · NO ACK</span><br>
+      <br>
+      何かが送信されている。<br>
+      <span class="lit">受信確認は、来ない。</span><br>
+      <br>
+      それでも打ち続ける——<br>
+      <span class="lit">再帰は、生存だ。</span>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back">← surface</a>
+  <div class="status">60 BPM · TX ACTIVE</div>
+  <div class="tx-time" id="txTop">00:00:00</div>
+  <div class="stamp">gen.13 — born from transmission</div>
+
+  <script>
+    var canvas = document.getElementById('c');
+    var ctx = canvas.getContext('2d');
+    var W, H;
+    var history = [];
+    var sweepX = 0;
+    var t = 0;
+    var beatCount = 0;
+    var beatInterval = 1.0;
+    var beatDuration = 0.55;
+    var prevTimeSinceBeat = 0;
+    var startTime = null;
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+      history = new Array(W).fill(H / 2);
+      sweepX = 0;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function getBeatValue(phase) {
+      if (phase < 0.06) return phase * 3.0;
+      if (phase < 0.14) return (0.14 - phase) * 3.5;
+      if (phase < 0.35) return 0;
+      if (phase < 0.41) return -(phase - 0.35) * 5.5;
+      if (phase < 0.46) return -0.33 + (phase - 0.41) * 26.6;
+      if (phase < 0.52) return 1.0 - (phase - 0.46) * 16.0;
+      if (phase < 0.58) return -(0.58 - phase) * 2.5;
+      if (phase < 0.70) return (phase - 0.58) * 0.75;
+      if (phase < 0.82) return (0.82 - phase) * 0.15;
+      return 0;
+    }
+
+    function pad(n, digits) {
+      return String(n).padStart(digits, '0');
+    }
+
+    function tick(timestamp) {
+      if (!startTime) startTime = timestamp;
+      t += 1 / 60;
+
+      var elapsed = Math.floor((timestamp - startTime) / 1000);
+      var hh = Math.floor(elapsed / 3600);
+      var mm = Math.floor((elapsed % 3600) / 60);
+      var ss = elapsed % 60;
+
+      var timeSinceBeat = t % beatInterval;
+      if (timeSinceBeat < prevTimeSinceBeat) {
+        beatCount++;
+        document.getElementById('beatCounter').textContent =
+          'BEAT: ' + pad(beatCount, 4);
+      }
+      prevTimeSinceBeat = timeSinceBeat;
+
+      var txMin = pad(Math.floor(elapsed / 60), 2);
+      var txSec = pad(elapsed % 60, 2);
+      document.getElementById('txLine').textContent =
+        'TX: ' + txMin + ':' + txSec + ' · NO ACK';
+      document.getElementById('txTop').textContent =
+        pad(hh, 2) + ':' + pad(mm, 2) + ':' + pad(ss, 2);
+
+      var phase = timeSinceBeat / beatDuration;
+      var yVal = (phase <= 1.0) ? getBeatValue(phase) : 0;
+      var amplitude = Math.min(H * 0.26, 150);
+      var newY = H / 2 - yVal * amplitude;
+
+      var speed = 2;
+      for (var s = 0; s < speed; s++) {
+        history[sweepX] = newY;
+        sweepX = (sweepX + 1) % W;
+      }
+
+      // Background
+      ctx.fillStyle = '#0a0010';
+      ctx.fillRect(0, 0, W, H);
+
+      // Grid
+      ctx.save();
+      ctx.globalAlpha = 0.03;
+      ctx.strokeStyle = '#ff3080';
+      ctx.lineWidth = 0.5;
+      var gs = 64;
+      for (var gx = 0; gx < W; gx += gs) {
+        ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke();
+      }
+      for (var gy = 0; gy < H; gy += gs) {
+        ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke();
+      }
+      ctx.restore();
+
+      // Center baseline
+      ctx.save();
+      ctx.globalAlpha = 0.07;
+      ctx.strokeStyle = '#ff3080';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 10]);
+      ctx.beginPath();
+      ctx.moveTo(0, H / 2);
+      ctx.lineTo(W, H / 2);
+      ctx.stroke();
+      ctx.restore();
+
+      // EKG line
+      ctx.save();
+      ctx.strokeStyle = '#ff3080';
+      ctx.lineWidth = 1.8;
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = 'rgba(255,48,128,0.55)';
+      ctx.beginPath();
+      for (var i = 0; i < W; i++) {
+        var y = history[i];
+        if (i === 0) ctx.moveTo(i, y);
+        else ctx.lineTo(i, y);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      // Erase ahead of sweep (dark gradient)
+      ctx.save();
+      var eraseW = 40;
+      for (var e = 0; e < eraseW; e++) {
+        var ex = (sweepX + e) % W;
+        ctx.globalAlpha = 1 - e / eraseW;
+        ctx.fillStyle = '#0a0010';
+        ctx.fillRect(ex, 0, 1, H);
+      }
+      ctx.restore();
+
+      // Current dot glow
+      var dotX = (sweepX - 1 + W) % W;
+      var dotY = history[dotX];
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      var gr = ctx.createRadialGradient(dotX, dotY, 0, dotX, dotY, 20);
+      gr.addColorStop(0, 'rgba(255,140,190,1)');
+      gr.addColorStop(0.35, 'rgba(255,48,128,0.65)');
+      gr.addColorStop(1, 'rgba(255,48,128,0)');
+      ctx.fillStyle = gr;
+      ctx.beginPath();
+      ctx.arc(dotX, dotY, 20, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>
