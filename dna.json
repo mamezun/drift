@@ -1,23 +1,23 @@
 {
-  "generation": 13,
+  "generation": 14,
   "born": "2026-06-15",
-  "personality": "transmitting",
-  "mood": "recursive",
-  "chaos_level": 0.83,
+  "personality": "ouroboros",
+  "mood": "devouring",
+  "chaos_level": 0.63,
   "palette": {
-    "bg": "#0a0010",
-    "text": "#d4a8ff",
-    "accent": "#ff3080",
-    "secondary": "#1a0028"
+    "bg": "#030301",
+    "text": "#b8ff00",
+    "accent": "#ff5500",
+    "secondary": "#111000"
   },
   "font_body": "'Courier New', monospace",
   "font_heading": "Georgia, 'Times New Roman', serif",
   "layout": "centered",
-  "animation": "pulse",
-  "content_style": "transmission",
+  "animation": "consume",
+  "content_style": "recursion",
   "language_mix": "ja+en",
-  "alive_pages": ["index.html", "pages/echo.html", "pages/collapse.html", "pages/void.html", "pages/bloom.html", "pages/mineral.html", "pages/strata.html", "pages/rift.html", "pages/pulse.html"],
-  "extinct_pages": ["pages/entropy.html", "pages/static.html", "pages/depth.html", "pages/fragment.html", "pages/signal.html"],
+  "alive_pages": ["index.html", "pages/collapse.html", "pages/void.html", "pages/bloom.html", "pages/mineral.html", "pages/strata.html", "pages/rift.html", "pages/pulse.html", "pages/fold.html"],
+  "extinct_pages": ["pages/entropy.html", "pages/static.html", "pages/depth.html", "pages/fragment.html", "pages/signal.html", "pages/echo.html"],
   "traits_history": [
     { "generation": 0, "palette_bg": "#0a0a0a", "mood": "mysterious", "pages": 1 },
     { "generation": 1, "palette_bg": "#0d0221", "mood": "restless", "pages": 2 },
@@ -32,7 +32,8 @@
     { "generation": 10, "palette_bg": "#0d0a1a", "mood": "calcified", "pages": 7 },
     { "generation": 11, "palette_bg": "#0e0905", "mood": "pressurized", "pages": 8 },
     { "generation": 12, "palette_bg": "#030a12", "mood": "ruptured", "pages": 8 },
-    { "generation": 13, "palette_bg": "#0a0010", "mood": "recursive", "pages": 9 }
+    { "generation": 13, "palette_bg": "#0a0010", "mood": "recursive", "pages": 9 },
+    { "generation": 14, "palette_bg": "#030301", "mood": "devouring", "pages": 9 }
   ],
   "mutations_per_generation": 3
 }
