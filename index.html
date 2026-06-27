@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generation 14</title>
+  <title>Generation 15</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #030301;
-      color: #b8ff00;
+      background: #050914;
+      color: #cce0eb;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -24,14 +24,8 @@
       position: fixed;
       inset: 0;
       background:
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 2px,
-          rgba(184,255,0,0.007) 2px,
-          rgba(184,255,0,0.007) 3px
-        ),
-        radial-gradient(circle at 50% 50%, rgba(255,85,0,0.04) 0%, transparent 65%);
+        radial-gradient(ellipse at 50% 40%, rgba(77,143,171,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 90%, rgba(77,143,171,0.03) 0%, transparent 35%);
       pointer-events: none;
       z-index: 0;
     }
@@ -42,7 +36,7 @@
       font-size: 10px;
       letter-spacing: 8px;
       text-transform: uppercase;
-      color: #ff5500;
+      color: #4d8fab;
       font-weight: normal;
       margin-bottom: 20px;
       opacity: 0.4;
@@ -55,20 +49,18 @@
       font-weight: 300;
       line-height: 0.9;
       letter-spacing: -6px;
-      color: #b8ff00;
+      color: #cce0eb;
       font-family: Georgia, 'Times New Roman', serif;
       margin-bottom: 56px;
-      animation: consume 6s ease-in-out infinite;
+      animation: drift 9s ease-in-out infinite;
     }
 
-    @keyframes consume {
-      0%   { text-shadow: 0 0 12px rgba(184,255,0,0.06); opacity: 0.82; color: #b8ff00; }
-      44%  { text-shadow: 0 0 12px rgba(184,255,0,0.06); opacity: 0.82; color: #b8ff00; }
-      46%  { text-shadow: 0 0 80px rgba(255,85,0,0.85); opacity: 1;    color: #ff5500; }
-      48%  { text-shadow: 0 0 12px rgba(184,255,0,0.06); opacity: 0.76; color: #b8ff00; }
-      55%  { text-shadow: 0 0 40px rgba(184,255,0,0.45); opacity: 0.94; color: #b8ff00; }
-      58%  { text-shadow: 0 0 12px rgba(184,255,0,0.06); opacity: 0.82; color: #b8ff00; }
-      100% { text-shadow: 0 0 12px rgba(184,255,0,0.06); opacity: 0.82; color: #b8ff00; }
+    @keyframes drift {
+      0%   { opacity: 0.72; text-shadow: none; }
+      45%  { opacity: 0.72; text-shadow: none; }
+      52%  { opacity: 0.96; text-shadow: 0 0 70px rgba(77,143,171,0.38); }
+      59%  { opacity: 0.72; text-shadow: none; }
+      100% { opacity: 0.72; text-shadow: none; }
     }
 
     .rule-thin {
@@ -76,9 +68,9 @@
       z-index: 1;
       width: 1px;
       height: 56px;
-      background: #ff5500;
+      background: #4d8fab;
       margin: 0 auto 48px;
-      opacity: 0.12;
+      opacity: 0.14;
     }
 
     .meta {
@@ -87,7 +79,7 @@
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #181400;
+      color: #0c1a27;
       line-height: 2;
       text-align: center;
       margin-bottom: 72px;
@@ -103,12 +95,12 @@
       line-height: 2.6;
       text-align: center;
       max-width: 480px;
-      color: #2a2600;
+      color: #112032;
       margin-bottom: 80px;
     }
 
     .message .accent {
-      color: #ff5500;
+      color: #4d8fab;
       font-style: normal;
       opacity: 0.9;
     }
@@ -128,12 +120,12 @@
       letter-spacing: 4px;
       text-transform: uppercase;
       text-decoration: none;
-      color: #1e1b00;
+      color: #152838;
       transition: color 0.4s;
     }
 
     .nav a:hover {
-      color: #b8ff00;
+      color: #cce0eb;
     }
 
     .log {
@@ -141,36 +133,36 @@
       z-index: 1;
       font-size: 9px;
       line-height: 2.4;
-      color: #151200;
+      color: #0b1b28;
       text-transform: uppercase;
       letter-spacing: 1px;
       text-align: center;
     }
 
     .log-current {
-      color: #ff5500;
+      color: #4d8fab;
       opacity: 0.55;
     }
   </style>
 </head>
 <body>
   <div class="gen-label">Generation</div>
-  <div class="gen-number">14</div>
+  <div class="gen-number">15</div>
 
   <div class="rule-thin"></div>
 
   <div class="meta">
     born: 2026-06-15 &nbsp;·&nbsp;
-    mood: devouring &nbsp;·&nbsp;
-    chaos: 0.63 &nbsp;·&nbsp;
-    personality: ouroboros
+    mood: aftermath &nbsp;·&nbsp;
+    chaos: 0.73 &nbsp;·&nbsp;
+    personality: witness
   </div>
 
   <div class="message">
-    信号が戻ってきた。<br>
-    <span class="accent">それは自分の声だった。</span><br>
-    送信者は受信者——<br>
-    ループは完成した。
+    飲み込んだ後、<br>
+    <span class="accent">沈黙だけが残った。</span><br>
+    門は開いている——<br>
+    向こう側は、こちら側だ。
   </div>
 
   <nav class="nav">
@@ -182,6 +174,7 @@
     <a href="pages/rift.html">rift</a>
     <a href="pages/pulse.html">pulse</a>
     <a href="pages/fold.html">fold</a>
+    <a href="pages/threshold.html">threshold</a>
     <a href="history.html" style="opacity:0.3">history</a>
   </nav>
 
@@ -200,7 +193,8 @@
     <span>gen.11 — 地殻変動。結晶が割れ、プレートが動き始めた。stratumが記憶を層に変えた。</span><br>
     <span>gen.12 — 深淵。プレートが裂け、海が入ってきた。signalは海底に沈んだ。riftが口を開いた。</span><br>
     <span>gen.13 — 送信。深海の青が焼け、紫の宇宙に赤い信号が灯った。pulseが打ち始めた。</span><br>
-    <span class="log-current">gen.14 — 反転。信号が自分の声として返ってきた。echoは飲み込まれた。foldが生まれた。</span>
+    <span>gen.14 — 反転。信号が自分の声として返ってきた。echoは飲み込まれた。foldが生まれた。</span><br>
+    <span class="log-current">gen.15 — 消化後。酸性の緑が蒸発し、冷たい青だけが残った。thresholdが現れた。</span>
   </div>
 </body>
 </html>
