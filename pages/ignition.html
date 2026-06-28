@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ignition</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0c0300;
+      color: #f2b955;
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 48px;
+      pointer-events: none;
+    }
+
+    .ignition-title {
+      font-size: 9px;
+      letter-spacing: 14px;
+      text-transform: uppercase;
+      color: #e85000;
+      opacity: 0.35;
+      margin-bottom: 48px;
+    }
+
+    .temp-readout {
+      font-size: 72px;
+      font-weight: 300;
+      font-family: 'Courier New', monospace;
+      color: #e85000;
+      letter-spacing: -2px;
+      margin-bottom: 10px;
+      transition: text-shadow 0.5s;
+    }
+
+    .temp-readout.critical {
+      text-shadow: 0 0 50px rgba(232,80,0,0.55), 0 0 20px rgba(255,120,0,0.3);
+    }
+
+    .temp-label {
+      font-size: 9px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #3a1200;
+      margin-bottom: 60px;
+    }
+
+    .ignition-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 3.2;
+      text-align: center;
+      max-width: 400px;
+      color: #1a0600;
+    }
+
+    .ignition-text .lit {
+      color: #f2b955;
+      font-style: normal;
+    }
+
+    .ignition-text .hot {
+      color: #e85000;
+      font-style: normal;
+      font-size: 10px;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 3px;
+      opacity: 0.72;
+    }
+
+    .back {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      font-size: 10px;
+      color: #f2b955;
+      text-decoration: none;
+      opacity: 0.2;
+      transition: opacity 0.3s;
+      letter-spacing: 1px;
+      z-index: 2;
+      pointer-events: all;
+    }
+
+    .back:hover { opacity: 0.75; }
+
+    .stamp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      font-size: 9px;
+      opacity: 0.1;
+      color: #e85000;
+      letter-spacing: 2px;
+      z-index: 2;
+    }
+
+    .status-top {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: #e85000;
+      opacity: 0.22;
+      z-index: 2;
+    }
+
+    .phase-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #e85000, #f2b955);
+      z-index: 2;
+      transition: width 0.8s linear, opacity 0.5s;
+      opacity: 0.35;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <div class="content">
+    <div class="ignition-title">Ignition</div>
+    <div class="temp-readout" id="tempDisplay">231°</div>
+    <div class="temp-label" id="tempLabel">KELVIN ABOVE AMBIENT · RISING</div>
+    <div class="ignition-text">
+      <span class="hot" id="statusLine">PRE-IGNITION</span><br>
+      <br>
+      まだ炎ではない。<br>
+      <span class="lit">だが、熱は方向を持った。</span><br>
+      <br>
+      燃焼点に達するまで——<br>
+      <span class="lit">ただ、待つ。</span>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back">← surface</a>
+  <div class="status-top" id="statusTop">TEMPERATURE CLIMBING</div>
+  <div class="stamp">gen.16 — born from herald</div>
+  <div class="phase-bar" id="phaseBar" style="width:0%"></div>
+
+  <script>
+    var canvas = document.getElementById('c');
+    var ctx = canvas.getContext('2d');
+    var W, H;
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Embers
+    var embers = [];
+
+    function spawnEmber() {
+      return {
+        x: Math.random() * W,
+        y: H + 10,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: -(1.4 + Math.random() * 2.8),
+        size: 1 + Math.random() * 2.8,
+        life: 0,
+        maxLife: 90 + Math.random() * 110,
+        hot: Math.random() > 0.38
+      };
+    }
+
+    for (var i = 0; i < 28; i++) {
+      var em = spawnEmber();
+      em.y = Math.random() * H;
+      em.life = Math.random() * em.maxLife * 0.7;
+      embers.push(em);
+    }
+
+    // Temperature
+    var IGNITION_POINT = 451;
+    var baseTemp = 231;
+    var temp = baseTemp;
+    var ignited = false;
+    var t = 0;
+
+    var tempEl = document.getElementById('tempDisplay');
+    var statusEl = document.getElementById('statusLine');
+    var labelEl = document.getElementById('tempLabel');
+    var topEl = document.getElementById('statusTop');
+    var barEl = document.getElementById('phaseBar');
+
+    function frame() {
+      t++;
+
+      // Rising temperature (oscillates + climbs)
+      if (!ignited) {
+        temp = baseTemp + Math.floor(t * 0.10) + Math.floor(Math.sin(t * 0.04) * 9);
+        var pct = Math.min((temp - baseTemp) / (IGNITION_POINT - baseTemp), 1);
+        barEl.style.width = (pct * 100) + '%';
+
+        if (temp >= IGNITION_POINT) {
+          ignited = true;
+          statusEl.textContent = 'IGNITION';
+          statusEl.style.color = '#ff8800';
+          statusEl.style.opacity = '1';
+          labelEl.textContent = 'COMBUSTION THRESHOLD REACHED';
+          topEl.textContent = 'IGNITION CONFIRMED';
+          tempEl.classList.add('critical');
+          barEl.style.opacity = '0.7';
+        } else if (temp > 400) {
+          statusEl.textContent = 'CRITICAL THRESHOLD';
+          topEl.textContent = 'CRITICAL · ' + temp + 'K';
+          tempEl.classList.add('critical');
+        } else if (temp > 340) {
+          statusEl.textContent = 'APPROACHING THRESHOLD';
+          topEl.textContent = 'TEMPERATURE CLIMBING · ' + temp + 'K';
+        }
+        tempEl.textContent = temp + '°';
+      }
+
+      // Background
+      ctx.fillStyle = '#0c0300';
+      ctx.fillRect(0, 0, W, H);
+
+      // Central glow (grows with temp)
+      var glowI = Math.min((temp - baseTemp) / (IGNITION_POINT - baseTemp), 1);
+      var cx = W / 2, cy = H * 0.5;
+      var gr = ctx.createRadialGradient(cx, cy, 0, cx, cy, W * 0.55 * (0.3 + glowI * 0.7));
+      gr.addColorStop(0,   'rgba(232,80,0,' + (glowI * 0.14) + ')');
+      gr.addColorStop(0.4, 'rgba(200,50,0,' + (glowI * 0.07) + ')');
+      gr.addColorStop(1,   'rgba(0,0,0,0)');
+      ctx.fillStyle = gr;
+      ctx.fillRect(0, 0, W, H);
+
+      // Bottom heat haze line
+      ctx.save();
+      ctx.globalAlpha = glowI * 0.18;
+      var hg = ctx.createLinearGradient(0, H * 0.75, 0, H);
+      hg.addColorStop(0, 'rgba(232,80,0,0)');
+      hg.addColorStop(1, 'rgba(232,80,0,0.25)');
+      ctx.fillStyle = hg;
+      ctx.fillRect(0, H * 0.75, W, H * 0.25);
+      ctx.restore();
+
+      // Embers
+      while (embers.length < (ignited ? 80 : 50)) {
+        embers.push(spawnEmber());
+      }
+
+      for (var j = embers.length - 1; j >= 0; j--) {
+        var p = embers[j];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life++;
+
+        var lf = p.life / p.maxLife;
+        var alpha = lf < 0.08 ? lf / 0.08
+                  : lf > 0.78 ? (1 - lf) / 0.22
+                  : 1;
+        alpha = Math.min(alpha, 1) * (p.hot ? 0.82 : 0.55);
+
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        if (p.hot) {
+          ctx.fillStyle = '#e85000';
+          ctx.shadowBlur = 7;
+          ctx.shadowColor = 'rgba(232,80,0,0.7)';
+        } else {
+          ctx.fillStyle = '#f2b955';
+          ctx.shadowBlur = 4;
+          ctx.shadowColor = 'rgba(240,160,60,0.45)';
+        }
+        var sz = p.size * (1 - lf * 0.5);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, sz, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        if (p.life >= p.maxLife || p.y < -20) {
+          embers.splice(j, 1);
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    frame();
+  </script>
+</body>
+</html>

@@ -126,5 +126,13 @@
     "description": "蛇は自分を食べ尽くした。消化液が酸性の緑を溶かし——気がつけば冷たい青だけが残っていた。宇宙誕生以前の色、まだ光も時間も存在しなかったときの色。ouroborosは食べた後に目撃者になった——食べた事実を記憶するために、外側に出た。thresholdが現れた。門ではない。両側を同時に持つ境界線の自己認識だ。クリックすると向こう側に渡れる。ただし、向こう側はこちら側だ。",
     "pages_born": ["pages/threshold.html"],
     "pages_died": []
+  },
+  {
+    "generation": 16,
+    "date": "2026-06-29",
+    "mutations": ["style_overhaul", "page_death", "page_birth"],
+    "description": "冷たさが終わった。後遺症の青は内側から焦げ、琥珀の亀裂が走った。目撃者は証言を終え、伝令になった——来るものを告げるために。collapseは静かに崩れた、今度こそ本当に。gen.7の白い叫びが立てた墓碑が、灰になった。灰は肥料だ。ignitionが生まれた——ビッグバン以前の一点として、熱が向きを見つけた瞬間として。世界はまだ燃えていない。だが、燃えることを決めた。",
+    "pages_born": ["pages/ignition.html"],
+    "pages_died": ["pages/collapse.html"]
   }
 ]

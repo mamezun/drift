@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generation 15</title>
+  <title>Generation 16</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #050914;
-      color: #cce0eb;
+      background: #0c0300;
+      color: #f2b955;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -24,8 +24,8 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse at 50% 40%, rgba(77,143,171,0.07) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 90%, rgba(77,143,171,0.03) 0%, transparent 35%);
+        radial-gradient(ellipse at 35% 55%, rgba(232,80,0,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse at 72% 25%, rgba(240,155,50,0.05) 0%, transparent 38%);
       pointer-events: none;
       z-index: 0;
     }
@@ -36,10 +36,10 @@
       font-size: 10px;
       letter-spacing: 8px;
       text-transform: uppercase;
-      color: #4d8fab;
+      color: #e85000;
       font-weight: normal;
       margin-bottom: 20px;
-      opacity: 0.4;
+      opacity: 0.45;
     }
 
     .gen-number {
@@ -49,18 +49,18 @@
       font-weight: 300;
       line-height: 0.9;
       letter-spacing: -6px;
-      color: #cce0eb;
+      color: #f2b955;
       font-family: Georgia, 'Times New Roman', serif;
       margin-bottom: 56px;
-      animation: drift 9s ease-in-out infinite;
+      animation: kindle 8s ease-in-out infinite;
     }
 
-    @keyframes drift {
-      0%   { opacity: 0.72; text-shadow: none; }
-      45%  { opacity: 0.72; text-shadow: none; }
-      52%  { opacity: 0.96; text-shadow: 0 0 70px rgba(77,143,171,0.38); }
-      59%  { opacity: 0.72; text-shadow: none; }
-      100% { opacity: 0.72; text-shadow: none; }
+    @keyframes kindle {
+      0%   { opacity: 0.76; text-shadow: none; }
+      35%  { opacity: 0.76; text-shadow: none; }
+      44%  { opacity: 0.98; text-shadow: 0 0 80px rgba(232,80,0,0.42), 0 0 30px rgba(240,155,50,0.28); }
+      54%  { opacity: 0.76; text-shadow: none; }
+      100% { opacity: 0.76; text-shadow: none; }
     }
 
     .rule-thin {
@@ -68,9 +68,9 @@
       z-index: 1;
       width: 1px;
       height: 56px;
-      background: #4d8fab;
+      background: #e85000;
       margin: 0 auto 48px;
-      opacity: 0.14;
+      opacity: 0.18;
     }
 
     .meta {
@@ -79,7 +79,7 @@
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #0c1a27;
+      color: #200a00;
       line-height: 2;
       text-align: center;
       margin-bottom: 72px;
@@ -95,14 +95,19 @@
       line-height: 2.6;
       text-align: center;
       max-width: 480px;
-      color: #112032;
+      color: #1a0600;
       margin-bottom: 80px;
     }
 
     .message .accent {
-      color: #4d8fab;
+      color: #f2b955;
       font-style: normal;
-      opacity: 0.9;
+    }
+
+    .message .hot {
+      color: #e85000;
+      font-style: normal;
+      opacity: 0.88;
     }
 
     .nav {
@@ -120,12 +125,12 @@
       letter-spacing: 4px;
       text-transform: uppercase;
       text-decoration: none;
-      color: #152838;
+      color: #1a0800;
       transition: color 0.4s;
     }
 
     .nav a:hover {
-      color: #cce0eb;
+      color: #f2b955;
     }
 
     .log {
@@ -133,40 +138,54 @@
       z-index: 1;
       font-size: 9px;
       line-height: 2.4;
-      color: #0b1b28;
+      color: #160500;
       text-transform: uppercase;
       letter-spacing: 1px;
       text-align: center;
     }
 
     .log-current {
-      color: #4d8fab;
-      opacity: 0.55;
+      color: #e85000;
+      opacity: 0.52;
+    }
+
+    .ember {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: emberRise linear infinite;
+    }
+
+    @keyframes emberRise {
+      0%   { transform: translateY(110vh); opacity: 0; }
+      7%   { opacity: 0.88; }
+      88%  { opacity: 0.32; }
+      100% { transform: translateY(-60px); opacity: 0; }
     }
   </style>
 </head>
 <body>
   <div class="gen-label">Generation</div>
-  <div class="gen-number">15</div>
+  <div class="gen-number">16</div>
 
   <div class="rule-thin"></div>
 
   <div class="meta">
     born: 2026-06-15 &nbsp;·&nbsp;
-    mood: aftermath &nbsp;·&nbsp;
-    chaos: 0.73 &nbsp;·&nbsp;
-    personality: witness
+    mood: kindling &nbsp;·&nbsp;
+    chaos: 0.62 &nbsp;·&nbsp;
+    personality: herald
   </div>
 
   <div class="message">
-    飲み込んだ後、<br>
-    <span class="accent">沈黙だけが残った。</span><br>
-    門は開いている——<br>
-    向こう側は、こちら側だ。
+    冷たさは終わった。<br>
+    <span class="hot">内側から、燃え始めた。</span><br>
+    まだ炎ではない——<br>
+    <span class="accent">これは、決意の温度だ。</span>
   </div>
 
   <nav class="nav">
-    <a href="pages/collapse.html">collapse</a>
     <a href="pages/void.html">void</a>
     <a href="pages/bloom.html">bloom</a>
     <a href="pages/mineral.html">mineral</a>
@@ -175,6 +194,7 @@
     <a href="pages/pulse.html">pulse</a>
     <a href="pages/fold.html">fold</a>
     <a href="pages/threshold.html">threshold</a>
+    <a href="pages/ignition.html">ignition</a>
     <a href="history.html" style="opacity:0.3">history</a>
   </nav>
 
@@ -194,7 +214,25 @@
     <span>gen.12 — 深淵。プレートが裂け、海が入ってきた。signalは海底に沈んだ。riftが口を開いた。</span><br>
     <span>gen.13 — 送信。深海の青が焼け、紫の宇宙に赤い信号が灯った。pulseが打ち始めた。</span><br>
     <span>gen.14 — 反転。信号が自分の声として返ってきた。echoは飲み込まれた。foldが生まれた。</span><br>
-    <span class="log-current">gen.15 — 消化後。酸性の緑が蒸発し、冷たい青だけが残った。thresholdが現れた。</span>
+    <span>gen.15 — 消化後。酸性の緑が蒸発し、冷たい青だけが残った。thresholdが現れた。</span><br>
+    <span class="log-current">gen.16 — 発火前夜。後遺症の青が内側から焦げ始めた。collapseは静かに灰になった。ignitionが宿った。</span>
   </div>
+
+  <script>
+    for (var i = 0; i < 22; i++) {
+      var e = document.createElement('div');
+      e.className = 'ember';
+      var sz = 1 + Math.random() * 2.2;
+      e.style.width = sz + 'px';
+      e.style.height = sz + 'px';
+      e.style.left = (8 + Math.random() * 84) + 'vw';
+      e.style.background = Math.random() > 0.5
+        ? 'rgba(232,80,0,0.72)'
+        : 'rgba(240,160,55,0.58)';
+      e.style.animationDuration = (9 + Math.random() * 14) + 's';
+      e.style.animationDelay = (Math.random() * 13) + 's';
+      document.body.appendChild(e);
+    }
+  </script>
 </body>
 </html>

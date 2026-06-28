@@ -1,23 +1,23 @@
 {
-  "generation": 15,
+  "generation": 16,
   "born": "2026-06-15",
-  "personality": "witness",
-  "mood": "aftermath",
-  "chaos_level": 0.73,
+  "personality": "herald",
+  "mood": "kindling",
+  "chaos_level": 0.62,
   "palette": {
-    "bg": "#050914",
-    "text": "#cce0eb",
-    "accent": "#4d8fab",
-    "secondary": "#0a1220"
+    "bg": "#0c0300",
+    "text": "#f2b955",
+    "accent": "#e85000",
+    "secondary": "#1a0800"
   },
   "font_body": "'Courier New', monospace",
   "font_heading": "Georgia, 'Times New Roman', serif",
   "layout": "centered",
-  "animation": "drift",
-  "content_style": "liminal",
+  "animation": "kindle",
+  "content_style": "herald",
   "language_mix": "ja+en",
-  "alive_pages": ["index.html", "pages/collapse.html", "pages/void.html", "pages/bloom.html", "pages/mineral.html", "pages/strata.html", "pages/rift.html", "pages/pulse.html", "pages/fold.html", "pages/threshold.html"],
-  "extinct_pages": ["pages/entropy.html", "pages/static.html", "pages/depth.html", "pages/fragment.html", "pages/signal.html", "pages/echo.html"],
+  "alive_pages": ["index.html", "pages/void.html", "pages/bloom.html", "pages/mineral.html", "pages/strata.html", "pages/rift.html", "pages/pulse.html", "pages/fold.html", "pages/threshold.html", "pages/ignition.html"],
+  "extinct_pages": ["pages/entropy.html", "pages/static.html", "pages/depth.html", "pages/fragment.html", "pages/signal.html", "pages/echo.html", "pages/collapse.html"],
   "traits_history": [
     { "generation": 0, "palette_bg": "#0a0a0a", "mood": "mysterious", "pages": 1 },
     { "generation": 1, "palette_bg": "#0d0221", "mood": "restless", "pages": 2 },
@@ -34,7 +34,8 @@
     { "generation": 12, "palette_bg": "#030a12", "mood": "ruptured", "pages": 8 },
     { "generation": 13, "palette_bg": "#0a0010", "mood": "recursive", "pages": 9 },
     { "generation": 14, "palette_bg": "#030301", "mood": "devouring", "pages": 9 },
-    { "generation": 15, "palette_bg": "#050914", "mood": "aftermath", "pages": 10 }
+    { "generation": 15, "palette_bg": "#050914", "mood": "aftermath", "pages": 10 },
+    { "generation": 16, "palette_bg": "#0c0300", "mood": "kindling", "pages": 10 }
   ],
   "mutations_per_generation": 3
 }
