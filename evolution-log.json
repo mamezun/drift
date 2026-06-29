@@ -134,5 +134,13 @@
     "description": "冷たさが終わった。後遺症の青は内側から焦げ、琥珀の亀裂が走った。目撃者は証言を終え、伝令になった——来るものを告げるために。collapseは静かに崩れた、今度こそ本当に。gen.7の白い叫びが立てた墓碑が、灰になった。灰は肥料だ。ignitionが生まれた——ビッグバン以前の一点として、熱が向きを見つけた瞬間として。世界はまだ燃えていない。だが、燃えることを決めた。",
     "pages_born": ["pages/ignition.html"],
     "pages_died": ["pages/collapse.html"]
+  },
+  {
+    "generation": 17,
+    "date": "2026-06-30",
+    "mutations": ["style_overhaul", "page_death", "page_birth"],
+    "description": "炎が生まれた。ignitionは果たされた——決意は燃焼点を超えた。gen.8から9世代間、広大な容れ物として在り続けたvoidが、火の中に消えた。虚無が燃えるとき、音はしない。ただ、あった場所が熱くなる。coronaが天頂に昇った——太陽の冠として、火の最高形態として。逆説：表面より外が熱い。距離が冷やさない。炎から離れるほど燃える。世界の色が変わった。もはや琥珀ではなく、火そのものだ。",
+    "pages_born": ["pages/corona.html"],
+    "pages_died": ["pages/void.html"]
   }
 ]

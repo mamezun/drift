@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corona</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #010005;
+      color: #ffcc44;
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 48px;
+      pointer-events: none;
+    }
+
+    .corona-title {
+      font-size: 9px;
+      letter-spacing: 14px;
+      text-transform: uppercase;
+      color: #ffaa00;
+      opacity: 0.4;
+      margin-bottom: 40px;
+    }
+
+    .corona-temp {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #ff8800;
+      opacity: 0.55;
+      margin-bottom: 48px;
+    }
+
+    .corona-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 3.2;
+      text-align: center;
+      max-width: 420px;
+      color: #1a0800;
+    }
+
+    .corona-text .lit {
+      color: #ffcc44;
+      font-style: normal;
+    }
+
+    .corona-text .hot {
+      color: #ff8800;
+      font-style: normal;
+      font-size: 10px;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 3px;
+      opacity: 0.7;
+    }
+
+    .back {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      font-size: 10px;
+      color: #ffcc44;
+      text-decoration: none;
+      opacity: 0.2;
+      transition: opacity 0.3s;
+      letter-spacing: 1px;
+      z-index: 2;
+      pointer-events: all;
+    }
+
+    .back:hover { opacity: 0.75; }
+
+    .stamp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      font-size: 9px;
+      opacity: 0.1;
+      color: #ff8800;
+      letter-spacing: 2px;
+      z-index: 2;
+    }
+
+    .status-top {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: #ff8800;
+      opacity: 0.22;
+      z-index: 2;
+    }
+
+    .temp-counter {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: #ffcc44;
+      opacity: 0.22;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <div class="content">
+    <div class="corona-title">Corona</div>
+    <div class="corona-temp" id="tempDisplay">1,500,000 K · PLASMA</div>
+    <div class="corona-text">
+      <span class="hot">PARADOX</span><br>
+      <br>
+      表面より外が熱い。<br>
+      <span class="lit">距離が冷やさない——</span><br>
+      <br>
+      火から離れるほど燃える。<br>
+      <span class="lit">これは冠だ。炎の頂点だ。</span>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back">← surface</a>
+  <div class="status-top">CORONA ACTIVE · 1.5MK</div>
+  <div class="temp-counter" id="tempCounter">1,500,000 K</div>
+  <div class="stamp">gen.17 — born from conflagration</div>
+
+  <script>
+    var canvas = document.getElementById('c');
+    var ctx = canvas.getContext('2d');
+    var W, H, cx, cy, R;
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+      cx = W / 2;
+      cy = H / 2;
+      R = Math.min(W, H) * 0.13;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Background stars
+    var stars = [];
+    for (var s = 0; s < 150; s++) {
+      stars.push({
+        x: Math.random(),
+        y: Math.random(),
+        r: 0.3 + Math.random() * 1.0,
+        a: 0.2 + Math.random() * 0.5
+      });
+    }
+
+    // Plasma arcs
+    var arcs = [];
+    function makeArc() {
+      var angle = Math.random() * Math.PI * 2;
+      return {
+        startAngle: angle,
+        span: (0.25 + Math.random() * 0.9) * Math.PI,
+        height: R * (1.3 + Math.random() * 1.8),
+        phase: Math.random() * Math.PI * 2,
+        speed: 0.004 + Math.random() * 0.006,
+        thickness: 0.8 + Math.random() * 2.2,
+        brightness: 0.35 + Math.random() * 0.65,
+        life: 0,
+        maxLife: 180 + Math.floor(Math.random() * 280)
+      };
+    }
+    for (var i = 0; i < 14; i++) {
+      var a = makeArc();
+      a.life = Math.floor(Math.random() * a.maxLife);
+      arcs.push(a);
+    }
+
+    var t = 0;
+
+    function drawFrame() {
+      t++;
+
+      ctx.fillStyle = '#010005';
+      ctx.fillRect(0, 0, W, H);
+
+      // Stars
+      for (var si = 0; si < stars.length; si++) {
+        var st = stars[si];
+        var sx = st.x * W;
+        var sy = st.y * H;
+        var dist = Math.sqrt((sx - cx) * (sx - cx) + (sy - cy) * (sy - cy));
+        if (dist < R * 1.05) continue;
+        ctx.save();
+        ctx.globalAlpha = st.a;
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(sx, sy, st.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Outer corona halo
+      var outerR = R * 4.5;
+      var outer = ctx.createRadialGradient(cx, cy, R * 0.9, cx, cy, outerR);
+      outer.addColorStop(0,   'rgba(255,160,40,0.10)');
+      outer.addColorStop(0.2, 'rgba(255,100,20,0.05)');
+      outer.addColorStop(0.5, 'rgba(200,60,0,0.02)');
+      outer.addColorStop(1,   'rgba(0,0,0,0)');
+      ctx.fillStyle = outer;
+      ctx.fillRect(0, 0, W, H);
+
+      // Chromosphere ring
+      var chromo = ctx.createRadialGradient(cx, cy, R * 0.95, cx, cy, R * 1.55);
+      chromo.addColorStop(0, 'rgba(255,210,80,0.15)');
+      chromo.addColorStop(0.6, 'rgba(255,110,20,0.07)');
+      chromo.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = chromo;
+      ctx.fillRect(0, 0, W, H);
+
+      // Plasma loop arcs
+      for (var j = arcs.length - 1; j >= 0; j--) {
+        var arc = arcs[j];
+        arc.life++;
+        arc.phase += arc.speed;
+
+        var lf = arc.life / arc.maxLife;
+        var fade = lf < 0.15 ? lf / 0.15
+                 : lf > 0.75 ? (1 - lf) / 0.25
+                 : 1.0;
+        var alpha = fade * arc.brightness * 0.6;
+
+        var sa = arc.startAngle + Math.sin(arc.phase * 0.7) * 0.12;
+        var ea = sa + arc.span;
+        var midA = sa + arc.span * 0.5;
+        var cpR = arc.height * (1.0 + Math.sin(arc.phase) * 0.1);
+
+        var x1  = cx + Math.cos(sa)   * R;
+        var y1  = cy + Math.sin(sa)   * R;
+        var x2  = cx + Math.cos(ea)   * R;
+        var y2  = cy + Math.sin(ea)   * R;
+        var cpx = cx + Math.cos(midA) * cpR;
+        var cpy = cy + Math.sin(midA) * cpR;
+
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.strokeStyle = arc.brightness > 0.65 ? '#ffdd66' : '#ff9922';
+        ctx.lineWidth   = arc.thickness;
+        ctx.lineCap     = 'round';
+        ctx.shadowBlur  = 20;
+        ctx.shadowColor = 'rgba(255,140,0,0.65)';
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.quadraticCurveTo(cpx, cpy, x2, y2);
+        ctx.stroke();
+        ctx.restore();
+
+        if (arc.life >= arc.maxLife) {
+          arcs.splice(j, 1);
+          arcs.push(makeArc());
+        }
+      }
+
+      // Photosphere (solar surface)
+      var shimmer = 0.06 + Math.sin(t * 0.035) * 0.025;
+      var surf = ctx.createRadialGradient(cx - R * 0.12, cy - R * 0.15, 0, cx, cy, R);
+      surf.addColorStop(0.00, '#fffee8');
+      surf.addColorStop(0.30, '#ffe866');
+      surf.addColorStop(0.65, '#ff9900');
+      surf.addColorStop(0.88, '#cc3300');
+      surf.addColorStop(1.00, '#550000');
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, 0, Math.PI * 2);
+      ctx.fillStyle = surf;
+      ctx.shadowBlur = 70;
+      ctx.shadowColor = 'rgba(255,140,30,0.85)';
+      ctx.fill();
+      ctx.restore();
+
+      // Inner bright spot shimmer
+      ctx.save();
+      ctx.globalAlpha = shimmer;
+      ctx.beginPath();
+      ctx.arc(cx - R * 0.1, cy - R * 0.12, R * 0.65, 0, Math.PI * 2);
+      ctx.fillStyle = '#fffef0';
+      ctx.fill();
+      ctx.restore();
+
+      requestAnimationFrame(drawFrame);
+    }
+
+    drawFrame();
+
+    // Temperature flicker
+    var tempEl = document.getElementById('tempCounter');
+    setInterval(function() {
+      var base = 1500000;
+      var v = base + Math.floor((Math.random() - 0.5) * 60000);
+      tempEl.textContent = v.toLocaleString() + ' K';
+    }, 2200);
+  </script>
+</body>
+</html>
