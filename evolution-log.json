@@ -142,5 +142,13 @@
     "description": "炎が生まれた。ignitionは果たされた——決意は燃焼点を超えた。gen.8から9世代間、広大な容れ物として在り続けたvoidが、火の中に消えた。虚無が燃えるとき、音はしない。ただ、あった場所が熱くなる。coronaが天頂に昇った——太陽の冠として、火の最高形態として。逆説：表面より外が熱い。距離が冷やさない。炎から離れるほど燃える。世界の色が変わった。もはや琥珀ではなく、火そのものだ。",
     "pages_born": ["pages/corona.html"],
     "pages_died": ["pages/void.html"]
+  },
+  {
+    "generation": 18,
+    "date": "2026-07-01",
+    "mutations": ["style_overhaul", "page_death", "page_birth"],
+    "description": "太陽は自分自身を食べ尽くした。coronaの温度が臨界を超え、重力が勝った。燃え上がるものは全て、十分に長く燃えれば自分の重さに耐えられなくなる。bloomは最後に燃えた——9世代目に暗闇から這い上がった金色の芽が、とうとう灰になった。生命は炎より弱かった。singularityが生まれた——密度が無限に向かう点として、物理法則が沈黙する場所として。世界の色が変わった。燃焼オレンジから、宇宙の冷たい青へ。炎の残骸は、もっとも静かな形をしている。",
+    "pages_born": ["pages/singularity.html"],
+    "pages_died": ["pages/bloom.html"]
   }
 ]

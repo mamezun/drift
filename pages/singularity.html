@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Singularity</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #000002;
+      color: #c8d8e0;
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 48px;
+      pointer-events: none;
+    }
+
+    .sing-title {
+      font-size: 9px;
+      letter-spacing: 14px;
+      text-transform: uppercase;
+      color: #3366ff;
+      opacity: 0.28;
+      margin-bottom: 48px;
+    }
+
+    .density {
+      font-size: 32px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      color: #c8d8e0;
+      opacity: 0.14;
+      margin-bottom: 52px;
+    }
+
+    .sing-text {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      font-weight: normal;
+      line-height: 3.6;
+      text-align: center;
+      max-width: 360px;
+      color: #05101a;
+    }
+
+    .sing-text .lit {
+      color: #c8d8e0;
+      opacity: 0.65;
+    }
+
+    .sing-text .blue {
+      color: #3366ff;
+      font-size: 9px;
+      letter-spacing: 4px;
+      opacity: 0.45;
+    }
+
+    .back {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      font-size: 10px;
+      color: #c8d8e0;
+      text-decoration: none;
+      opacity: 0.12;
+      transition: opacity 0.4s;
+      letter-spacing: 1px;
+      z-index: 2;
+      pointer-events: all;
+    }
+
+    .back:hover { opacity: 0.60; }
+
+    .stamp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      font-size: 9px;
+      opacity: 0.07;
+      color: #3366ff;
+      letter-spacing: 2px;
+      z-index: 2;
+    }
+
+    .status-top {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: #3366ff;
+      opacity: 0.16;
+      z-index: 2;
+    }
+
+    .coords {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: #c8d8e0;
+      opacity: 0.10;
+      z-index: 2;
+      transition: opacity 0.8s;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <div class="content">
+    <div class="sing-title">Singularity</div>
+    <div class="density">ρ → ∞</div>
+    <div class="sing-text">
+      <span class="blue">DENSITY: UNDEFINED</span><br>
+      <br>
+      全ての炎が収束した。<br>
+      <span class="lit">体積はゼロになった。</span><br>
+      <br>
+      ここから先は——<br>
+      <span class="lit">物理法則が沈黙する。</span>
+    </div>
+  </div>
+
+  <a href="../index.html" class="back">← surface</a>
+  <div class="status-top">EVENT HORIZON ACTIVE</div>
+  <div class="coords" id="coordsEl">r = 0 · t = ∞</div>
+  <div class="stamp">gen.18 — born from collapse</div>
+
+  <script>
+    var canvas = document.getElementById('c');
+    var ctx = canvas.getContext('2d');
+    var W, H;
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Stars that get gravitationally lensed
+    var stars = [];
+    for (var i = 0; i < 320; i++) {
+      stars.push({
+        x: Math.random(),
+        y: Math.random(),
+        size: 0.25 + Math.random() * 1.5,
+        brightness: 0.12 + Math.random() * 0.65,
+        twinkle: Math.random() * Math.PI * 2,
+        twinkleSpeed: 0.008 + Math.random() * 0.025
+      });
+    }
+
+    var t = 0;
+
+    function lens(x, y, cx, cy, bhR) {
+      var dx = x - cx;
+      var dy = y - cy;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 1) return null;
+
+      var strength = bhR * bhR * 2.2;
+      var deflection = strength / (dist * dist);
+      var angle = Math.atan2(dy, dx);
+      var newDist = dist + deflection * (dist > bhR ? 1 : -1);
+      if (newDist < bhR * 1.05) return null;
+
+      return {
+        x: cx + Math.cos(angle) * newDist,
+        y: cy + Math.sin(angle) * newDist,
+        distFactor: Math.min(1.0, (dist - bhR * 0.8) / (bhR * 2.5)),
+        near: dist < bhR * 3.5
+      };
+    }
+
+    function draw() {
+      t++;
+
+      ctx.fillStyle = '#000002';
+      ctx.fillRect(0, 0, W, H);
+
+      var cx = W / 2;
+      var cy = H / 2;
+      var bhR = Math.min(W, H) * 0.07;
+
+      // Draw lensed stars
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        s.twinkle += s.twinkleSpeed;
+
+        var sx = s.x * W;
+        var sy = s.y * H;
+
+        var lensed = lens(sx, sy, cx, cy, bhR);
+        if (!lensed) continue;
+        if (lensed.distFactor <= 0) continue;
+
+        // Stars near event horizon appear blue-shifted
+        var col = lensed.near ? '#7799ff' : '#c8d8e0';
+        var brt = s.brightness * (0.72 + 0.28 * Math.sin(s.twinkle)) * lensed.distFactor;
+
+        // Ring enhancement — Einstein ring region
+        var distFromCenter = Math.sqrt((lensed.x - cx) * (lensed.x - cx) + (lensed.y - cy) * (lensed.y - cy));
+        var ringBoost = 1;
+        if (distFromCenter > bhR * 1.1 && distFromCenter < bhR * 2.2) {
+          ringBoost = 1 + (1.0 - (distFromCenter - bhR * 1.1) / (bhR * 1.1)) * 2.5;
+          col = '#5588ff';
+        }
+
+        ctx.save();
+        ctx.globalAlpha = Math.min(brt * ringBoost, 0.92);
+        ctx.fillStyle = col;
+        if (ringBoost > 1.6) {
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = 'rgba(80,130,255,0.9)';
+        }
+        ctx.beginPath();
+        ctx.arc(lensed.x, lensed.y, s.size * Math.min(ringBoost * 0.6, 1.4), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Accretion glow — faint blue disc
+      for (var layer = 0; layer < 4; layer++) {
+        var adGrad = ctx.createRadialGradient(cx, cy, bhR * 1.05, cx, cy, bhR * (3.5 - layer * 0.4));
+        adGrad.addColorStop(0, 'rgba(30,70,220,' + (0.05 - layer * 0.01) + ')');
+        adGrad.addColorStop(0.5, 'rgba(15,40,160,' + (0.02 - layer * 0.004) + ')');
+        adGrad.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = adGrad;
+        ctx.fillRect(0, 0, W, H);
+      }
+
+      // Event horizon: absolute black
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, bhR, 0, Math.PI * 2);
+      ctx.fillStyle = '#000002';
+      ctx.fill();
+      ctx.restore();
+
+      // Photon sphere ring — slow pulse
+      var pulse = 0.06 + 0.03 * Math.sin(t * 0.018);
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, bhR * 1.5, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(51,102,255,' + pulse + ')';
+      ctx.lineWidth = 0.7;
+      ctx.shadowBlur = 16;
+      ctx.shadowColor = 'rgba(51,102,255,0.55)';
+      ctx.stroke();
+      ctx.restore();
+
+      // Second faint ring
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, bhR * 2.1, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(51,102,255,' + (pulse * 0.3) + ')';
+      ctx.lineWidth = 0.4;
+      ctx.stroke();
+      ctx.restore();
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    // Coords — Schwarzschild radius flickering near zero
+    var coordEl = document.getElementById('coordsEl');
+    setInterval(function() {
+      var r = (Math.random() * 1e-35).toExponential(2);
+      coordEl.textContent = 'r = ' + r + ' m · t = ∞';
+    }, 2800);
+  </script>
+</body>
+</html>
