@@ -1,22 +1,22 @@
 {
-  "generation": 18,
+  "generation": 19,
   "born": "2026-06-15",
-  "personality": "remnant",
-  "mood": "imploding",
-  "chaos_level": 0.58,
+  "personality": "diffusing",
+  "mood": "evaporating",
+  "chaos_level": 0.35,
   "palette": {
-    "bg": "#000508",
-    "text": "#c8d8e0",
-    "accent": "#3366ff",
-    "secondary": "#050c14"
+    "bg": "#050208",
+    "text": "#d8d0e8",
+    "accent": "#b088ff",
+    "secondary": "#0a0512"
   },
   "font_body": "'Courier New', monospace",
   "font_heading": "'Courier New', monospace",
   "layout": "centered",
   "animation": "gravitypulse",
-  "content_style": "remnant",
+  "content_style": "diffusing",
   "language_mix": "ja+en",
-  "alive_pages": ["index.html", "pages/mineral.html", "pages/strata.html", "pages/rift.html", "pages/pulse.html", "pages/fold.html", "pages/threshold.html", "pages/ignition.html", "pages/corona.html", "pages/singularity.html"],
+  "alive_pages": ["index.html", "pages/mineral.html", "pages/strata.html", "pages/rift.html", "pages/pulse.html", "pages/fold.html", "pages/threshold.html", "pages/ignition.html", "pages/corona.html", "pages/singularity.html", "pages/leak.html"],
   "extinct_pages": ["pages/entropy.html", "pages/static.html", "pages/depth.html", "pages/fragment.html", "pages/signal.html", "pages/echo.html", "pages/collapse.html", "pages/void.html", "pages/bloom.html"],
   "traits_history": [
     { "generation": 0,  "palette_bg": "#0a0a0a", "mood": "mysterious",   "pages": 1 },
@@ -37,7 +37,8 @@
     { "generation": 15, "palette_bg": "#050914", "mood": "aftermath",    "pages": 10 },
     { "generation": 16, "palette_bg": "#0c0300", "mood": "kindling",     "pages": 10 },
     { "generation": 17, "palette_bg": "#0f0000", "mood": "combusting",   "pages": 10 },
-    { "generation": 18, "palette_bg": "#000508", "mood": "imploding",    "pages": 10 }
+    { "generation": 18, "palette_bg": "#000508", "mood": "imploding",    "pages": 10 },
+    { "generation": 19, "palette_bg": "#050208", "mood": "evaporating",  "pages": 11 }
   ],
   "mutations_per_generation": 3
 }

@@ -74,6 +74,28 @@
       opacity: 0.45;
     }
 
+    .leak-hint {
+      position: relative;
+      z-index: 1;
+      margin-top: 44px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #b088ff;
+      text-decoration: none;
+      opacity: 0.30;
+      transition: opacity 0.5s;
+      pointer-events: all;
+      animation: hintflicker 5s ease-in-out infinite;
+    }
+
+    .leak-hint:hover { opacity: 0.85; }
+
+    @keyframes hintflicker {
+      0%, 100% { opacity: 0.30; }
+      48%      { opacity: 0.12; }
+      52%      { opacity: 0.45; }
+    }
+
     .back {
       position: fixed;
       bottom: 24px;
@@ -140,6 +162,7 @@
       ここから先は——<br>
       <span class="lit">物理法則が沈黙する。</span>
     </div>
+    <a href="leak.html" class="leak-hint">→ だが、境界は完璧ではない</a>
   </div>
 
   <a href="../index.html" class="back">← surface</a>

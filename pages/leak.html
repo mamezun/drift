@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leak</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #050208;
+      color: #d8d0e8;
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 48px;
+      pointer-events: none;
+    }
+
+    .leak-title {
+      font-size: 9px;
+      letter-spacing: 14px;
+      text-transform: uppercase;
+      color: #b088ff;
+      opacity: 0.30;
+      margin-bottom: 48px;
+    }
+
+    .readout {
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      color: #d8d0e8;
+      opacity: 0.16;
+      margin-bottom: 52px;
+    }
+
+    .leak-text {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      font-weight: normal;
+      line-height: 3.4;
+      text-align: center;
+      max-width: 380px;
+      color: #0f0a18;
+    }
+
+    .leak-text .lit {
+      color: #d8d0e8;
+      opacity: 0.65;
+    }
+
+    .leak-text .glow {
+      color: #b088ff;
+      opacity: 0.55;
+    }
+
+    .back {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      font-size: 10px;
+      color: #d8d0e8;
+      text-decoration: none;
+      opacity: 0.12;
+      transition: opacity 0.4s;
+      letter-spacing: 1px;
+      z-index: 2;
+      pointer-events: all;
+    }
+
+    .back:hover { opacity: 0.60; }
+
+    .stamp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      font-size: 9px;
+      opacity: 0.08;
+      color: #b088ff;
+      letter-spacing: 2px;
+      z-index: 2;
+    }
+
+    .status-top {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: #b088ff;
+      opacity: 0.18;
+      z-index: 2;
+    }
+
+    .coords {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: #d8d0e8;
+      opacity: 0.10;
+      z-index: 2;
+      transition: opacity 0.8s;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <div class="content">
+    <div class="leak-title">Leak</div>
+    <div class="readout">M(t) = M₀ − ∫dM</div>
+    <div class="leak-text">
+      <span class="glow">HORIZON: SHRINKING</span><br>
+      <br>
+      何も逃げないはずだった。<br>
+      <span class="lit">だが、境界は完璧ではなかった。</span><br>
+      <br>
+      対の片方が飲まれ、<br>
+      もう片方が、外へ逃げた。<br>
+      <br>
+      <span class="lit">それは光ではない。情報だ。</span><br>
+      10<sup>67</sup>年かけて、すべてが漏れていく。
+    </div>
+  </div>
+
+  <a href="../index.html" class="back">← surface</a>
+  <div class="status-top">HAWKING RADIATION DETECTED</div>
+  <div class="coords" id="coordsEl">dM/dt &lt; 0</div>
+  <div class="stamp">gen.19 — born from singularity</div>
+
+  <script>
+    var canvas = document.getElementById('c');
+    var ctx = canvas.getContext('2d');
+    var W, H;
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Particle pairs born at the horizon: one falls in, one escapes.
+    var particles = [];
+    var t = 0;
+
+    function spawnPair(cx, cy, bhR) {
+      var angle = Math.random() * Math.PI * 2;
+      var ex = cx + Math.cos(angle) * bhR * 1.02;
+      var ey = cy + Math.sin(angle) * bhR * 1.02;
+      particles.push({
+        x: ex,
+        y: ey,
+        vx: Math.cos(angle) * (0.15 + Math.random() * 0.35),
+        vy: Math.sin(angle) * (0.15 + Math.random() * 0.35),
+        life: 1.0,
+        decay: 0.0016 + Math.random() * 0.0018,
+        size: 0.6 + Math.random() * 1.4
+      });
+    }
+
+    var bgStars = [];
+    for (var i = 0; i < 90; i++) {
+      bgStars.push({
+        x: Math.random(),
+        y: Math.random(),
+        size: 0.3 + Math.random() * 1.0,
+        opacity: 0.05 + Math.random() * 0.25,
+        twinkle: Math.random() * Math.PI * 2
+      });
+    }
+
+    function draw() {
+      t++;
+
+      ctx.fillStyle = '#050208';
+      ctx.fillRect(0, 0, W, H);
+
+      var cx = W / 2;
+      var cy = H / 2;
+      var shrink = Math.max(0.55, 1 - (t % 100000) * 0.0000005);
+      var bhR = Math.min(W, H) * 0.05 * shrink;
+
+      // distant stars, unaffected
+      for (var i = 0; i < bgStars.length; i++) {
+        var s = bgStars[i];
+        s.twinkle += 0.01;
+        ctx.save();
+        ctx.globalAlpha = s.opacity * (0.6 + 0.4 * Math.sin(s.twinkle));
+        ctx.fillStyle = '#d8d0e8';
+        ctx.beginPath();
+        ctx.arc(s.x * W, s.y * H, s.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      if (t % 6 === 0) spawnPair(cx, cy, bhR);
+
+      for (var i = particles.length - 1; i >= 0; i--) {
+        var p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vx *= 1.004;
+        p.vy *= 1.004;
+        p.life -= p.decay;
+
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        ctx.save();
+        ctx.globalAlpha = p.life * 0.75;
+        ctx.fillStyle = '#b088ff';
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = 'rgba(176,136,255,0.6)';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // faint accretion haze
+      var glow = ctx.createRadialGradient(cx, cy, bhR * 0.9, cx, cy, bhR * 4);
+      glow.addColorStop(0, 'rgba(120,80,200,0.10)');
+      glow.addColorStop(0.5, 'rgba(60,30,100,0.04)');
+      glow.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, W, H);
+
+      // shrinking horizon
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, bhR, 0, Math.PI * 2);
+      ctx.fillStyle = '#050208';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(176,136,255,' + (0.20 + 0.06 * Math.sin(t * 0.02)) + ')';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+      ctx.restore();
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    var coordEl = document.getElementById('coordsEl');
+    setInterval(function() {
+      var d = (Math.random() * 1e-40).toExponential(2);
+      coordEl.textContent = 'dM/dt = -' + d + ' kg/s';
+    }, 3200);
+  </script>
+</body>
+</html>
