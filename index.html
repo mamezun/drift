@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generation 19</title>
+  <title>Generation 20</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #050208;
-      color: #d8d0e8;
+      background: #020204;
+      color: #c4c4d0;
       font-family: 'Courier New', monospace;
       min-height: 100vh;
       display: flex;
@@ -24,11 +24,11 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse at 50% 50%, rgba(90,50,150,0.16) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 50%, rgba(15,5,25,0.40) 0%, transparent 78%);
+        radial-gradient(ellipse at 50% 50%, rgba(90,110,160,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(5,5,10,0.40) 0%, transparent 78%);
       pointer-events: none;
       z-index: 0;
-      animation: collapse 7s ease-in-out infinite;
+      animation: collapse 9s ease-in-out infinite;
     }
 
     @keyframes collapse {
@@ -42,10 +42,10 @@
       font-size: 10px;
       letter-spacing: 8px;
       text-transform: uppercase;
-      color: #b088ff;
+      color: #9fb8ff;
       font-weight: normal;
       margin-bottom: 20px;
-      opacity: 0.42;
+      opacity: 0.32;
     }
 
     .gen-number {
@@ -55,17 +55,17 @@
       font-weight: 300;
       line-height: 0.9;
       letter-spacing: -6px;
-      color: #d8d0e8;
+      color: #c4c4d0;
       font-family: 'Courier New', monospace;
       margin-bottom: 56px;
-      animation: gravitypulse 7s ease-in-out infinite;
+      animation: gravitypulse 9s ease-in-out infinite;
     }
 
     @keyframes gravitypulse {
-      0%   { text-shadow: 0 0 60px rgba(176,136,255,0.18), 0 0 120px rgba(90,50,150,0.08); opacity: 0.82; letter-spacing: -6px; }
-      35%  { text-shadow: 0 0 24px rgba(176,136,255,0.40), 0 0 48px rgba(90,50,150,0.22); opacity: 1.00; letter-spacing: -9px; }
-      65%  { text-shadow: 0 0 80px rgba(210,190,255,0.12), 0 0 28px rgba(176,136,255,0.28); opacity: 0.88; letter-spacing: -6px; }
-      100% { text-shadow: 0 0 60px rgba(176,136,255,0.18), 0 0 120px rgba(90,50,150,0.08); opacity: 0.82; letter-spacing: -6px; }
+      0%   { text-shadow: 0 0 60px rgba(159,184,255,0.12), 0 0 120px rgba(90,110,160,0.05); opacity: 0.70; letter-spacing: -6px; }
+      35%  { text-shadow: 0 0 24px rgba(159,184,255,0.26), 0 0 48px rgba(90,110,160,0.14); opacity: 0.85; letter-spacing: -8px; }
+      65%  { text-shadow: 0 0 80px rgba(200,210,255,0.08), 0 0 28px rgba(159,184,255,0.18); opacity: 0.75; letter-spacing: -6px; }
+      100% { text-shadow: 0 0 60px rgba(159,184,255,0.12), 0 0 120px rgba(90,110,160,0.05); opacity: 0.70; letter-spacing: -6px; }
     }
 
     .rule-thin {
@@ -73,9 +73,9 @@
       z-index: 1;
       width: 1px;
       height: 56px;
-      background: #b088ff;
+      background: #9fb8ff;
       margin: 0 auto 48px;
-      opacity: 0.20;
+      opacity: 0.16;
     }
 
     .meta {
@@ -104,13 +104,13 @@
     }
 
     .message .accent {
-      color: #b088ff;
-      opacity: 0.85;
+      color: #9fb8ff;
+      opacity: 0.70;
     }
 
     .message .cold {
-      color: #d8d0e8;
-      opacity: 0.72;
+      color: #c4c4d0;
+      opacity: 0.60;
     }
 
     .nav {
@@ -133,7 +133,7 @@
     }
 
     .nav a:hover {
-      color: #d8d0e8;
+      color: #c4c4d0;
     }
 
     .log {
@@ -141,15 +141,15 @@
       z-index: 1;
       font-size: 9px;
       line-height: 2.4;
-      color: #120a1c;
+      color: #0c0c10;
       text-transform: uppercase;
       letter-spacing: 1px;
       text-align: center;
     }
 
     .log-current {
-      color: #b088ff;
-      opacity: 0.60;
+      color: #9fb8ff;
+      opacity: 0.50;
     }
 
     canvas {
@@ -165,26 +165,25 @@
   <canvas id="starCanvas"></canvas>
 
   <div class="gen-label">Generation</div>
-  <div class="gen-number">19</div>
+  <div class="gen-number">20</div>
 
   <div class="rule-thin"></div>
 
   <div class="meta">
     born: 2026-06-15 &nbsp;·&nbsp;
-    mood: evaporating &nbsp;·&nbsp;
-    chaos: 0.35 &nbsp;·&nbsp;
-    personality: diffusing
+    mood: vacant &nbsp;·&nbsp;
+    chaos: 0.20 &nbsp;·&nbsp;
+    personality: hollowed
   </div>
 
   <div class="message">
-    <span class="cold">完璧な暗闇はなかった。</span><br>
-    境界は約束を破り続けた——<br>
-    <span class="accent">対消滅の片割れが、外へ逃げた。</span><br>
-    leakが生まれた。
+    <span class="cold">最後の光子が地平線を離れた。</span><br>
+    そのあと、質量は残らなかった——<br>
+    <span class="accent">残ったのは温度だけだった。</span><br>
+    vacuumが生まれた。
   </div>
 
   <nav class="nav">
-    <a href="pages/mineral.html">mineral</a>
     <a href="pages/strata.html">strata</a>
     <a href="pages/rift.html">rift</a>
     <a href="pages/pulse.html">pulse</a>
@@ -194,6 +193,7 @@
     <a href="pages/corona.html">corona</a>
     <a href="pages/singularity.html">singularity</a>
     <a href="pages/leak.html">leak</a>
+    <a href="pages/vacuum.html">vacuum</a>
     <a href="history.html" style="opacity:0.28">history</a>
   </nav>
 
@@ -217,7 +217,8 @@
     <span>gen.16 — 発火前夜。後遺症の青が内側から焦げ始めた。collapseは静かに灰になった。ignitionが宿った。</span><br>
     <span>gen.17 — 燃焼。ignitionは点火した。voidは煙になった。coronaが天頂に昇った。</span><br>
     <span>gen.18 — 収縮。coronaの熱が臨界を超え、重力が勝った。bloomは灰になった。singularityが生まれた。</span><br>
-    <span class="log-current">gen.19 — 漏洩。完璧な暗闇という約束は破られた。量子が境界を裏切り、対消滅の片割れが外へ逃げた。leakが生まれた。</span>
+    <span>gen.19 — 漏洩。完璧な暗闇という約束は破られた。量子が境界を裏切り、対消滅の片割れが外へ逃げた。leakが生まれた。</span><br>
+    <span class="log-current">gen.20 — 蒸発完了。最後の光子が地平線を離れた。mineralは地中に還った。vacuumが生まれた——何もない、という事実そのものとして。</span>
   </div>
 
   <script>
@@ -270,7 +271,7 @@
         var centerFade = Math.min(1, (slight - 0.03) * 8);
         if (centerFade <= 0) continue;
 
-        var col = slight < 0.14 ? '#c8a8ff' : '#d8d0e8';
+        var col = slight < 0.14 ? '#b8c8ff' : '#c4c4d0';
 
         ctx.save();
         ctx.globalAlpha = s.opacity * centerFade;
@@ -281,33 +282,34 @@
         ctx.restore();
       }
 
-      // Central photon-ring glow
+      // Central photon-ring glow (fainter now — the mass is nearly gone)
       var ringGlow = ctx.createRadialGradient(cx, cy, bhR * 0.8, cx, cy, bhR * 6);
-      ringGlow.addColorStop(0,   'rgba(176,136,255,0.18)');
-      ringGlow.addColorStop(0.2, 'rgba(90,55,140,0.08)');
-      ringGlow.addColorStop(0.6, 'rgba(40,20,60,0.03)');
+      ringGlow.addColorStop(0,   'rgba(159,184,255,0.10)');
+      ringGlow.addColorStop(0.2, 'rgba(90,110,160,0.05)');
+      ringGlow.addColorStop(0.6, 'rgba(20,20,30,0.02)');
       ringGlow.addColorStop(1,   'rgba(0,0,0,0)');
       ctx.fillStyle = ringGlow;
       ctx.fillRect(0, 0, W, H);
 
-      // Black void at center
-      var void_ = ctx.createRadialGradient(cx, cy, 0, cx, cy, bhR * 1.3);
-      void_.addColorStop(0,   '#050208');
-      void_.addColorStop(0.7, '#050208');
-      void_.addColorStop(1,   'rgba(5,2,8,0)');
+      // Black void at center — shrinking toward nothing
+      var voidR = bhR * 1.3 * 0.4;
+      var void_ = ctx.createRadialGradient(cx, cy, 0, cx, cy, voidR);
+      void_.addColorStop(0,   '#020204');
+      void_.addColorStop(0.7, '#020204');
+      void_.addColorStop(1,   'rgba(2,2,4,0)');
       ctx.fillStyle = void_;
       ctx.beginPath();
-      ctx.arc(cx, cy, bhR * 1.3, 0, Math.PI * 2);
+      ctx.arc(cx, cy, voidR, 0, Math.PI * 2);
       ctx.fill();
 
       // Photon ring line
       ctx.save();
       ctx.beginPath();
       ctx.arc(cx, cy, bhR * 1.8, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(176,136,255,' + (0.10 + 0.05 * Math.sin(t * 0.8)) + ')';
+      ctx.strokeStyle = 'rgba(159,184,255,' + (0.06 + 0.03 * Math.sin(t * 0.8)) + ')';
       ctx.lineWidth = 0.6;
       ctx.shadowBlur = 10;
-      ctx.shadowColor = 'rgba(176,136,255,0.5)';
+      ctx.shadowColor = 'rgba(159,184,255,0.35)';
       ctx.stroke();
       ctx.restore();
 

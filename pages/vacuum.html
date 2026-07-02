@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vacuum</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #020204;
+      color: #c4c4d0;
+      font-family: 'Courier New', monospace;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 48px;
+      pointer-events: none;
+    }
+
+    .vacuum-title {
+      font-size: 9px;
+      letter-spacing: 16px;
+      text-transform: uppercase;
+      color: #9fb8ff;
+      opacity: 0.22;
+      margin-bottom: 56px;
+    }
+
+    .readout {
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      color: #c4c4d0;
+      opacity: 0.14;
+      margin-bottom: 64px;
+    }
+
+    .vacuum-text {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      font-weight: normal;
+      line-height: 3.6;
+      text-align: center;
+      max-width: 360px;
+      color: #08080c;
+    }
+
+    .vacuum-text .lit {
+      color: #c4c4d0;
+      opacity: 0.5;
+    }
+
+    .vacuum-text .glow {
+      color: #9fb8ff;
+      opacity: 0.4;
+    }
+
+    .back {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      font-size: 10px;
+      color: #c4c4d0;
+      text-decoration: none;
+      opacity: 0.10;
+      transition: opacity 0.4s;
+      letter-spacing: 1px;
+      z-index: 2;
+      pointer-events: all;
+    }
+
+    .back:hover { opacity: 0.55; }
+
+    .stamp {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      font-size: 9px;
+      opacity: 0.06;
+      color: #9fb8ff;
+      letter-spacing: 2px;
+      z-index: 2;
+    }
+
+    .status-top {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: #9fb8ff;
+      opacity: 0.14;
+      z-index: 2;
+    }
+
+    .coords {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: #c4c4d0;
+      opacity: 0.08;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <div class="content">
+    <div class="vacuum-title">Vacuum</div>
+    <div class="readout">2.725 K</div>
+    <div class="vacuum-text">
+      <span class="glow">MASS: 0.000000 kg</span><br>
+      <br>
+      最後の光子が地平線を離れた。<br>
+      <span class="lit">そのあと、何も残らなかった。</span><br>
+      <br>
+      質量ではない。温度だけが残った。<br>
+      <span class="lit">宇宙背景放射と、同じ静けさ。</span><br>
+      <br>
+      これは終わりではない。<br>
+      定義そのものが消えただけだ。
+    </div>
+  </div>
+
+  <a href="../index.html" class="back">← surface</a>
+  <div class="status-top">HORIZON: UNDEFINED</div>
+  <div class="coords" id="coordsEl">ρ = 0</div>
+  <div class="stamp">gen.20 — born from leak</div>
+
+  <script>
+    var canvas = document.getElementById('c');
+    var ctx = canvas.getContext('2d');
+    var W, H;
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // The vacuum is not empty — it fluctuates, rarely, faintly.
+    var fluctuations = [];
+    var t = 0;
+
+    function maybeSpawn() {
+      if (Math.random() < 0.006) {
+        fluctuations.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          life: 1.0,
+          decay: 0.01 + Math.random() * 0.015,
+          size: 0.5 + Math.random() * 1.0
+        });
+      }
+    }
+
+    function draw() {
+      t++;
+
+      ctx.fillStyle = '#020204';
+      ctx.fillRect(0, 0, W, H);
+
+      maybeSpawn();
+
+      for (var i = fluctuations.length - 1; i >= 0; i--) {
+        var f = fluctuations[i];
+        f.life -= f.decay;
+        if (f.life <= 0) {
+          fluctuations.splice(i, 1);
+          continue;
+        }
+        ctx.save();
+        ctx.globalAlpha = f.life * 0.35;
+        ctx.fillStyle = '#9fb8ff';
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = 'rgba(159,184,255,0.4)';
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    var coordEl = document.getElementById('coordsEl');
+    setInterval(function() {
+      coordEl.textContent = 'ρ = ' + (Math.random() * 1e-30).toExponential(2) + ' kg/m³';
+    }, 4000);
+  </script>
+</body>
+</html>
